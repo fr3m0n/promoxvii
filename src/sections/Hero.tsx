@@ -84,6 +84,7 @@ const Hero = () => {
 
   return (
     <section
+      id="inicio"
       ref={heroRef}
       className="relative w-full h-screen overflow-hidden bg-void-black"
     >
