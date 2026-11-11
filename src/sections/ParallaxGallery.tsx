@@ -81,10 +81,10 @@ const ParallaxGallery = () => {
     };
   }, []);
 
-  const scrollToTour = () => {
-    const tourSection = document.getElementById('tour');
-    if (tourSection) {
-      tourSection.scrollIntoView({ behavior: 'smooth' });
+  const scrollToGallery = () => {
+    const gallerySection = document.getElementById('gallery-expanded');
+    if (gallerySection) {
+      gallerySection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -227,7 +227,7 @@ const ParallaxGallery = () => {
           {/* End CTA */}
           <div className="flex-shrink-0 flex flex-col items-center justify-center w-[300px] h-[300px]">
             <button
-              onClick={scrollToTour}
+              onClick={scrollToGallery}
               className="group flex flex-col items-center gap-4 text-white hover:text-neon-cyan transition-colors"
             >
               <div className="w-20 h-20 rounded-full border border-white/20 group-hover:border-neon-cyan flex items-center justify-center transition-colors">
