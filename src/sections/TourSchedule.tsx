@@ -81,7 +81,7 @@ const TourSchedule = () => {
           <img
             src={tourScheduleConfig.vinylImage}
             alt="Vinyl Disc"
-            className="w-full h-full animate-spin-slow"
+            className="w-full h-full"
           />
         </div>
       )}
@@ -100,10 +100,10 @@ const TourSchedule = () => {
 
         {/* Two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left: Venue preview */}
+          {/* Left: Venue preview centered */}
           {TOUR_DATES.length > 0 && (
-            <div className="hidden lg:flex lg:items-center">
-              <div className="sticky top-32 w-full aspect-[4/3] rounded-2xl overflow-hidden bg-[#1F1F1F]/10">
+            <div className="hidden lg:flex lg:justify-center lg:items-center">
+              <div className="w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden bg-[#1F1F1F]/10 mx-auto">
                 <img
                   src={TOUR_DATES[activeVenue]?.image}
                   alt={TOUR_DATES[activeVenue]?.venue}
@@ -135,7 +135,7 @@ const TourSchedule = () => {
                   onMouseEnter={() => setActiveVenue(index)}
                   onMouseLeave={() => setActiveVenue(0)}
                 >
-                  <div className="flex flex-col md:flex-row md:items-center gap-4">
+                  <div className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 min-w-0">
                     {/* Date */}
                     <div className="flex-shrink-0 w-28">
                       <p className="font-mono-custom text-2xl font-bold text-[#1F1F1F]">
@@ -147,22 +147,22 @@ const TourSchedule = () => {
                     </div>
 
                     {/* Venue info */}
-                    <div className="flex-grow">
+                    <div className="flex-grow min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <MapPin className="w-4 h-4 text-[#1F1F1F]/50" />
                         <span className="font-display text-lg text-[#1F1F1F]">
                           {tour.city}
                         </span>
                       </div>
-                      <p className="text-sm text-[#1F1F1F]/60 ml-6">
+                      <p className="text-sm text-[#1F1F1F]/60 ml-6 truncate">
                         {tour.venue}
                       </p>
                     </div>
 
                     {/* Time */}
-                    <div className="flex items-center gap-2 text-[#1F1F1F]/60">
+                    <div className="flex-shrink-0 flex items-center gap-2 text-[#1F1F1F]/60">
                       <Clock className="w-4 h-4" />
-                      <span className="font-mono-custom text-sm">{tour.time}</span>
+                      <span className="font-mono-custom text-sm whitespace-nowrap">{tour.time}</span>
                     </div>
 
                     {/* Status badge */}
@@ -175,12 +175,12 @@ const TourSchedule = () => {
                     {/* Action button */}
                     <div className="flex-shrink-0">
                       {tour.status === 'on-sale' ? (
-                        <button className="flex items-center gap-2 px-4 py-2 bg-[#1F1F1F] text-white rounded-full text-sm font-medium hover:bg-[#1F1F1F]/80 transition-colors">
+                        <button className="flex items-center gap-2 px-3 py-2 bg-[#1F1F1F] text-white rounded-full text-sm font-medium hover:bg-[#1F1F1F]/80 transition-colors whitespace-nowrap">
                           <Ticket className="w-4 h-4" />
                           <span>{tourScheduleConfig.buyButtonText}</span>
                         </button>
                       ) : (
-                        <button className="flex items-center gap-2 px-4 py-2 border border-[#1F1F1F]/20 text-[#1F1F1F]/60 rounded-full text-sm hover:border-[#1F1F1F]/40 transition-colors">
+                        <button className="flex items-center gap-2 px-3 py-2 border border-[#1F1F1F]/20 text-[#1F1F1F]/60 rounded-full text-sm hover:border-[#1F1F1F]/40 transition-colors whitespace-nowrap">
                           <ExternalLink className="w-4 h-4" />
                           <span>{tourScheduleConfig.detailsButtonText}</span>
                         </button>
@@ -201,7 +201,10 @@ const TourSchedule = () => {
           <p className="font-mono-custom text-sm text-[#1F1F1F]/60 mb-4">
             {tourScheduleConfig.bottomNote}
           </p>
-          <button className="px-8 py-4 bg-[#1F1F1F] text-white font-display text-sm uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors">
+          <button
+            onClick={() => document.getElementById('tour')?.scrollIntoView({ behavior: 'smooth' })}
+            className="px-8 py-4 bg-[#1F1F1F] text-white font-display text-sm uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors"
+          >
             {tourScheduleConfig.bottomCtaText}
           </button>
         </div>

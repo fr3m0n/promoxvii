@@ -92,7 +92,7 @@ const Footer = () => {
           ref={titleRef}
           className="relative z-10 text-center will-change-transform"
         >
-          <h2 className="font-display text-[15vw] text-white leading-none tracking-tighter">
+          <h2 className="font-display text-[8vw] md:text-[6vw] text-white leading-none tracking-tighter">
             {footerConfig.heroTitle}
           </h2>
           <p className="font-mono-custom text-lg text-neon-soft/60 uppercase tracking-[0.5em] mt-4">
@@ -153,17 +153,25 @@ const Footer = () => {
                 {footerConfig.quickLinksTitle}
               </h4>
               <ul className="space-y-3">
-                {footerConfig.quickLinks.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-sm text-white/50 hover:text-neon-soft transition-colors flex items-center gap-2 group"
-                    >
-                      <span>{link}</span>
-                      <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </a>
-                  </li>
-                ))}
+                {footerConfig.quickLinks.map((link) => {
+                  const linkMap: Record<string, string> = {
+                    Inicio: '#inicio',
+                    Galería: '#gallery',
+                    Eventos: '#tour',
+                    'Confirmar asistencia': '#contact',
+                  };
+                  return (
+                    <li key={link}>
+                      <a
+                        href={linkMap[link] || '#'}
+                        className="text-sm text-white/50 hover:text-neon-soft transition-colors flex items-center gap-2 group"
+                      >
+                        <span>{link}</span>
+                        <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
