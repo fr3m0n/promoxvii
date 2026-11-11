@@ -251,6 +251,30 @@ canvas {
   background: rgba(31, 31, 31, 0.05);
 }
 
+/* Mejoras visuales para fotos antiguas */
+img {
+  filter: brightness(1.03) contrast(1.06) saturate(1.1);
+}
+
+.foto-restaurada {
+  filter: brightness(1.08) contrast(1.15) saturate(1.25) sepia(0.06) hue-rotate(-3deg);
+  transition: filter 0.4s ease;
+}
+
+.foto-restaurada:hover {
+  filter: brightness(1.15) contrast(1.25) saturate(1.35) sepia(0.04);
+}
+
+/* Viñeta suave para destacar las fotos */
+.vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.35) 100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
 /* Footer grid item */
 .footer-grid-item {
   transition: transform 0.3s ease, filter 0.3s ease;
