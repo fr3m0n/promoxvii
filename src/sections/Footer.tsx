@@ -207,27 +207,27 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Newsletter */}
+            {/* Radio Player */}
             <div>
               <h4 className="font-display text-sm uppercase tracking-wider text-white mb-6">
-                {footerConfig.newsletterTitle}
+                Radio Promo XVII
               </h4>
               <p className="text-sm text-white/50 mb-4">
-                {footerConfig.newsletterDescription}
+                Escucha nuestra radio en vivo mientras esperas el evento.
               </p>
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="flex-grow px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-neon-cyan/50"
-                />
-                <button
-                  onClick={handleContactClick}
-                  className="px-4 py-3 bg-neon-cyan/20 text-neon-cyan rounded-lg text-sm font-medium hover:bg-neon-cyan/30 transition-colors"
+              <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+                <audio
+                  controls
+                  className="w-full"
+                  style={{ height: '32px' }}
                 >
-                  {footerConfig.newsletterButtonText}
-                </button>
+                  <source src="https://stream.zeno.fm/nftb1pqe408uv" type="audio/mpeg" />
+                  Tu navegador no soporta el reproductor de audio.
+                </audio>
               </div>
+              <p className="text-xs text-white/30 mt-2">
+                Si no suena, verifica tu conexión o intenta abrir el enlace directamente.
+              </p>
             </div>
           </div>
 
