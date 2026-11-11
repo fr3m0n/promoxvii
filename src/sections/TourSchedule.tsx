@@ -169,8 +169,12 @@ const TourSchedule = () => {
             {tourScheduleConfig.bottomNote}
           </p>
           <button
-            onClick={() => window.open('/ProgramaBodasOro.pdf', '_blank')}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-[#1F1F1F] text-white font-display text-sm uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors cursor-pointer"
+            type="button"
+            onClick={() => {
+              console.log('Opening PDF...');
+              window.open('/ProgramaBodasOro.pdf', '_blank');
+            }}
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[#1F1F1F] text-white font-display text-sm uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors cursor-pointer relative z-30"
           >
             <FileText className="w-5 h-5" />
             <span>{tourScheduleConfig.bottomCtaText}</span>
