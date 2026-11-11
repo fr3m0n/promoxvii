@@ -114,7 +114,7 @@ const TourSchedule = () => {
 
           {/* Right: Tour list */}
           <div className="space-y-4">
-            {TOUR_DATES.map((tour, index) => {
+            {TOUR_DATES.slice(0, 6).map((tour, index) => {
               const status = getStatusLabel(tour.status);
 
               return (
@@ -153,27 +153,6 @@ const TourSchedule = () => {
                       <Clock className="w-4 h-4" />
                       <span className="font-mono-custom text-sm whitespace-nowrap">{tour.time}</span>
                     </div>
-
-                    {/* Action button */}
-                    <div className="flex-shrink-0">
-                      {tour.status === 'on-sale' ? (
-                        <button
-                          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                          className="flex items-center gap-2 px-3 py-2 bg-[#1F1F1F] text-white rounded-full text-sm font-medium hover:bg-[#1F1F1F]/80 transition-colors whitespace-nowrap"
-                        >
-                          <Ticket className="w-4 h-4" />
-                          <span>{tourScheduleConfig.buyButtonText}</span>
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                          className="flex items-center gap-2 px-3 py-2 border border-[#1F1F1F]/20 text-[#1F1F1F]/60 rounded-full text-sm hover:border-[#1F1F1F]/40 transition-colors whitespace-nowrap"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                          <span>{tourScheduleConfig.detailsButtonText}</span>
-                        </button>
-                      )}
-                    </div>
                   </div>
 
                   {/* Hover indicator */}
@@ -189,12 +168,14 @@ const TourSchedule = () => {
           <p className="font-mono-custom text-sm text-[#1F1F1F]/60 mb-4">
             {tourScheduleConfig.bottomNote}
           </p>
-          <button
-            onClick={() => document.getElementById('tour')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-4 bg-[#1F1F1F] text-white font-display text-sm uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors"
+          <a
+            href="/ProgramaBodasOro.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-4 bg-[#1F1F1F] text-white font-display text-sm uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors"
           >
             {tourScheduleConfig.bottomCtaText}
-          </button>
+          </a>
         </div>
       </div>
 
