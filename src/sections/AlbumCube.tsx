@@ -116,20 +116,6 @@ const AlbumCube = () => {
       ref={sectionRef}
       className="relative w-full h-screen bg-void-black overflow-hidden"
     >
-      {/* Background title with blur effect */}
-      <div
-        ref={titleRef}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
-        style={{
-          filter: `blur(${blurAmount}px)`,
-          letterSpacing: `${letterSpacing}px`,
-        }}
-      >
-        <h2 className="font-display text-[20vw] text-white/5 uppercase whitespace-nowrap select-none">
-          {currentAlbum.subtitle}
-        </h2>
-      </div>
-
       {/* 3D Canvas */}
       <div className="absolute inset-0 z-10">
         <Canvas
@@ -164,7 +150,7 @@ const AlbumCube = () => {
         <p className="font-mono-custom text-xs text-neon-soft/60 uppercase tracking-wider mb-2">
           Album {String(currentAlbum.id).padStart(2, '0')} / {String(albumCubeConfig.albums.length).padStart(2, '0')}
         </p>
-        <h3 className="font-display text-5xl md:text-7xl text-white mb-2 transition-all duration-300">
+        <h3 className="font-display text-4xl md:text-5xl text-white mb-2 transition-all duration-300">
           {currentAlbum.title}
         </h3>
         <p className="font-mono-custom text-sm text-white/50">
@@ -194,10 +180,6 @@ const AlbumCube = () => {
           {albumCubeConfig.scrollHint}
         </p>
       </div>
-
-      {/* Decorative corner lines */}
-      <div className="absolute top-12 left-12 w-20 h-px bg-gradient-to-r from-neon-cyan/50 to-transparent" />
-      <div className="absolute top-12 left-12 w-px h-20 bg-gradient-to-b from-neon-cyan/50 to-transparent" />
     </section>
   );
 };
