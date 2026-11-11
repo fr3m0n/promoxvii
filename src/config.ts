@@ -193,8 +193,8 @@ export const tourScheduleConfig: TourScheduleConfig = {
   vinylImage: "/cube-celebration.jpg",
   buyButtonText: "Confirmar",
   detailsButtonText: "Ver detalles",
-  bottomNote: "Un día de encuentro, recuerdos y festejos",
-  bottomCtaText: "Ver todos los eventos",
+  bottomNote: "Consulta el programa completo de la celebración",
+  bottomCtaText: "Ver Programa Completo (PDF)",
   statusLabels: {
     onSale: "Abierto",
     soldOut: "Completo",

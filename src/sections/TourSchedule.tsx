@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { MapPin, Clock, Ticket, ExternalLink } from 'lucide-react';
+import { MapPin, Clock, FileText } from 'lucide-react';
 import { tourScheduleConfig } from '../config';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -172,9 +172,10 @@ const TourSchedule = () => {
             href="/ProgramaBodasOro.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-8 py-4 bg-[#1F1F1F] text-white font-display text-sm uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[#1F1F1F] text-white font-display text-sm uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors"
           >
-            {tourScheduleConfig.bottomCtaText}
+            <FileText className="w-5 h-5" />
+            <span>{tourScheduleConfig.bottomCtaText}</span>
           </a>
         </div>
       </div>
