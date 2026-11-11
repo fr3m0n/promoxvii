@@ -136,7 +136,7 @@ const Hero = () => {
         {/* Main title with decode effect */}
         <h1
           ref={titleRef}
-          className="decode-text text-[8vw] md:text-[6vw] lg:text-[5vw] font-bold text-white leading-none tracking-tighter mb-4"
+          className="decode-text text-[5vw] md:text-[4vw] lg:text-[3vw] font-bold text-white leading-none tracking-tighter mb-6"
         >
           <span className={`${isDecoding ? 'text-glow-cyan' : ''} transition-all duration-300`}>
             {displayText}
