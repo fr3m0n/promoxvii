@@ -75,17 +75,6 @@ const TourSchedule = () => {
       ref={sectionRef}
       className="relative w-full min-h-screen bg-[#9DC4FF] py-20 overflow-hidden"
     >
-      {/* Rotating vinyl disc */}
-      {tourScheduleConfig.vinylImage && (
-        <div className="absolute top-20 right-20 w-64 h-64 md:w-80 md:h-80 z-10 opacity-80">
-          <img
-            src={tourScheduleConfig.vinylImage}
-            alt="Vinyl Disc"
-            className="w-full h-full"
-          />
-        </div>
-      )}
-
       {/* Content container */}
       <div ref={contentRef} className="relative z-20 max-w-7xl mx-auto px-6 md:px-12">
         {/* Section header */}
@@ -135,7 +124,7 @@ const TourSchedule = () => {
                   onMouseEnter={() => setActiveVenue(index)}
                   onMouseLeave={() => setActiveVenue(0)}
                 >
-                  <div className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 min-w-0">
+                  <div className="flex flex-col md:flex-row md:items-center gap-4 min-w-0">
                     {/* Date */}
                     <div className="flex-shrink-0 w-28">
                       <p className="font-mono-custom text-2xl font-bold text-[#1F1F1F]">
@@ -165,22 +154,21 @@ const TourSchedule = () => {
                       <span className="font-mono-custom text-sm whitespace-nowrap">{tour.time}</span>
                     </div>
 
-                    {/* Status badge */}
-                    <div className="flex-shrink-0">
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${status.color}`}>
-                        {status.text}
-                      </span>
-                    </div>
-
                     {/* Action button */}
                     <div className="flex-shrink-0">
                       {tour.status === 'on-sale' ? (
-                        <button className="flex items-center gap-2 px-3 py-2 bg-[#1F1F1F] text-white rounded-full text-sm font-medium hover:bg-[#1F1F1F]/80 transition-colors whitespace-nowrap">
+                        <button
+                          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                          className="flex items-center gap-2 px-3 py-2 bg-[#1F1F1F] text-white rounded-full text-sm font-medium hover:bg-[#1F1F1F]/80 transition-colors whitespace-nowrap"
+                        >
                           <Ticket className="w-4 h-4" />
                           <span>{tourScheduleConfig.buyButtonText}</span>
                         </button>
                       ) : (
-                        <button className="flex items-center gap-2 px-3 py-2 border border-[#1F1F1F]/20 text-[#1F1F1F]/60 rounded-full text-sm hover:border-[#1F1F1F]/40 transition-colors whitespace-nowrap">
+                        <button
+                          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                          className="flex items-center gap-2 px-3 py-2 border border-[#1F1F1F]/20 text-[#1F1F1F]/60 rounded-full text-sm hover:border-[#1F1F1F]/40 transition-colors whitespace-nowrap"
+                        >
                           <ExternalLink className="w-4 h-4" />
                           <span>{tourScheduleConfig.detailsButtonText}</span>
                         </button>
