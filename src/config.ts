@@ -48,7 +48,7 @@ export const heroConfig: HeroConfig = {
   ctaPrimary: "Ver Galería de Recuerdos",
   ctaPrimaryTarget: "gallery",
   ctaSecondary: "Confirmar Asistencia",
-  ctaSecondaryTarget: "rsvp",
+  ctaSecondaryTarget: "contact",
   cornerLabel: "REUNIÓN DE ORO",
   cornerDetail: "1977 — 2027",
   navItems: [

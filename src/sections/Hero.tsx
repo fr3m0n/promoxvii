@@ -121,8 +121,8 @@ const Hero = () => {
         </div>
       </nav>
 
-      {/* Hero content */}
-      <div className="relative z-10 flex flex-col items-center justify-end h-full pb-20 px-4">
+      {/* Hero content - bajado para no tapar las caras */}
+      <div className="relative z-10 flex flex-col items-center justify-end h-full pb-40 px-4">
         {/* Logo / Brand */}
         <div className="absolute top-8 left-8">
           <div className="flex items-center gap-2">
