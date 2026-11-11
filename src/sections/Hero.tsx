@@ -121,8 +121,8 @@ const Hero = () => {
         </div>
       </nav>
 
-      {/* Hero todo el contenido bajado casi al fondo para ver caras */}
-      <div className="relative z-10 flex flex-col items-center justify-end h-full pb-80 px-4">
+      {/* Hero: contenido pegado al fondo, texto pequeño para ver caras */}
+      <div className="relative z-10 flex flex-col items-center justify-end h-full pb-12 px-4">
         {/* Logo / Brand */}
         <div className="absolute top-8 left-8">
           <div className="flex items-center gap-2">
@@ -136,7 +136,7 @@ const Hero = () => {
         {/* Main title with decode effect */}
         <h1
           ref={titleRef}
-          className="decode-text text-[5vw] md:text-[4vw] lg:text-[3vw] font-bold text-white leading-none tracking-tighter mb-6"
+          className="decode-text text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-none tracking-tighter mb-6"
         >
           <span className={`${isDecoding ? 'text-glow-cyan' : ''} transition-all duration-300`}>
             {displayText}
