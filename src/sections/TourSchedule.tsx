@@ -168,15 +168,13 @@ const TourSchedule = () => {
           <p className="font-mono-custom text-sm text-[#1F1F1F]/60 mb-4">
             {tourScheduleConfig.bottomNote}
           </p>
-          <a
-            href="/ProgramaBodasOro.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-[#1F1F1F] text-white font-display text-sm uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors"
+          <button
+            onClick={() => window.open('/ProgramaBodasOro.pdf', '_blank')}
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[#1F1F1F] text-white font-display text-sm uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors cursor-pointer"
           >
             <FileText className="w-5 h-5" />
             <span>{tourScheduleConfig.bottomCtaText}</span>
-          </a>
+          </button>
         </div>
       </div>
 
