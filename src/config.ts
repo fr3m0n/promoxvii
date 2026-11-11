@@ -380,10 +380,7 @@ export const footerConfig: FooterConfig = {
   copyrightText: "© 2027 Promo XVII. 50 años de amistad.",
   bottomLinks: ["Política de privacidad", "Términos de uso"],
   socialLinks: [
-    { icon: "instagram", label: "Instagram", href: "#" },
-    { icon: "twitter", label: "Facebook", href: "#" },
-    { icon: "youtube", label: "YouTube", href: "#" },
-    { icon: "music", label: "WhatsApp", href: "#" },
+    { icon: "youtube", label: "YouTube", href: "https://youtu.be/kXVzNlbbCRk" },
   ],
   galleryImages: [
     { id: 1, src: "/thumb1.jpg" },
