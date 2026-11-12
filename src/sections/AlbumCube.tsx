@@ -91,7 +91,7 @@ const AlbumCube = () => {
     const st = ScrollTrigger.create({
       trigger: sectionRef.current,
       start: 'top top',
-      end: '+=400%',
+      end: '+=300%',
       scrub: 1,
       pin: true,
       anticipatePin: 1,
