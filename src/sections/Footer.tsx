@@ -76,7 +76,7 @@ const Footer = () => {
           ref={portraitRef}
           className="absolute inset-0 flex items-center justify-center"
         >
-          <div className="relative w-full max-w-2xl aspect-[2/3] mx-auto">
+          <div className="relative w-full max-w-xs sm:max-w-md md:max-w-2xl aspect-[2/3] mx-auto">
             <img
               src={footerConfig.portraitImage}
               alt={footerConfig.portraitAlt}

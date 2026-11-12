@@ -117,7 +117,7 @@ const ParallaxGallery = () => {
           {parallaxGalleryConfig.parallaxImagesTop.map((image) => (
             <div
               key={image.id}
-              className="relative flex-shrink-0 w-[400px] h-[250px] overflow-hidden rounded-lg image-hover-scale"
+              className="relative flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] h-[180px] sm:h-[220px] md:h-[250px] overflow-hidden rounded-lg image-hover-scale"
             >
               <img
                 src={image.src}
@@ -138,7 +138,7 @@ const ParallaxGallery = () => {
           {parallaxGalleryConfig.parallaxImagesBottom.map((image) => (
             <div
               key={image.id}
-              className="relative flex-shrink-0 w-[400px] h-[250px] overflow-hidden rounded-lg image-hover-scale"
+              className="relative flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] h-[180px] sm:h-[220px] md:h-[250px] overflow-hidden rounded-lg image-hover-scale"
             >
               <img
                 src={image.src}
@@ -195,7 +195,7 @@ const ParallaxGallery = () => {
               className="relative flex-shrink-0 group cursor-pointer"
               style={{ marginTop: index % 2 === 0 ? '0' : '60px' }}
             >
-              <div className="relative w-[450px] h-[300px] overflow-hidden rounded-xl">
+              <div className="relative w-[300px] sm:w-[380px] md:w-[450px] h-[200px] sm:h-[250px] md:h-[300px] overflow-hidden rounded-xl">
                 <img
                   src={image.src}
                   alt={image.title}
