@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 
 // Fotos de la galería ampliada
 const galleryPhotos = [
@@ -21,11 +21,20 @@ const galleryPhotos = [
   { src: '/footer-group.jpg', title: 'Celebración 50 Años', year: '2027' },
 ];
 
+// Videos de la promoción
+const galleryVideos = [
+  { id: 'kXVzNlbbCRk', title: 'Video de la Promoción XVII', year: '2026' },
+];
+
 const GalleryExpanded = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [lightboxVideo, setLightboxVideo] = useState<number | null>(null);
 
   const openLightbox = (index: number) => setLightboxIndex(index);
-  const closeLightbox = () => setLightboxIndex(null);
+  const closeLightbox = () => {
+    setLightboxIndex(null);
+    setLightboxVideo(null);
+  };
   const nextImage = () => {
     if (lightboxIndex !== null) {
       setLightboxIndex((lightboxIndex + 1) % galleryPhotos.length);
@@ -79,6 +88,63 @@ const GalleryExpanded = () => {
           ))}
         </div>
       </div>
+
+      {/* Videos Section */}
+      {galleryVideos.length > 0 && (
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12">
+          <h3 className="font-display text-2xl text-white mb-6">Videos</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {galleryVideos.map((video, index) => (
+              <div
+                key={index}
+                className="relative group cursor-pointer overflow-hidden rounded-xl bg-white/5 aspect-video"
+                onClick={() => setLightboxVideo(index)}
+              >
+                <img
+                  src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                  alt={video.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-neon-cyan/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Play className="w-8 h-8 text-void-black ml-1" fill="currentColor" />
+                  </div>
+                </div>
+                <div className="absolute bottom-4 left-4">
+                  <p className="font-mono-custom text-xs text-neon-soft/80">{video.year}</p>
+                  <h3 className="font-display text-lg text-white">{video.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Lightbox for videos */}
+      {lightboxVideo !== null && (
+        <div
+          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
+          onClick={closeLightbox}
+        >
+          <button
+            onClick={closeLightbox}
+            className="absolute top-6 right-6 z-60 text-white/70 hover:text-white transition-colors"
+            aria-label="Cerrar"
+          >
+            <X className="w-8 h-8" />
+          </button>
+          <div className="relative max-w-5xl w-full aspect-video" onClick={(e) => e.stopPropagation()}>
+            <iframe
+              src={`https://www.youtube.com/embed/${galleryVideos[lightboxVideo].id}?autoplay=1&rel=0`}
+              title={galleryVideos[lightboxVideo].title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full rounded-lg"
+            />
+          </div>
+        </div>
+      )}
 
       {/* Lightbox */}
       {lightboxIndex !== null && (
