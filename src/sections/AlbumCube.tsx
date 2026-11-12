@@ -33,11 +33,13 @@ const Cube = ({ rotationProgress }: CubeProps) => {
   useFrame(() => {
     if (meshRef.current) {
       // Map rotation progress (0-1) to rotation angles
-      const targetRotationY = rotationProgress * Math.PI * 2;
-      // First half: small tilt to show 4 sides. Second half: tilt to show top/bottom faces
+      // First half: rotate in Y to show 4 sides. Second half: tilt in X to show top/bottom
+      const targetRotationY = rotationProgress < 0.5
+        ? rotationProgress * Math.PI * 2
+        : Math.PI * 2; // Stop Y rotation in second half
       const targetRotationX = rotationProgress < 0.5
-        ? Math.sin(rotationProgress * Math.PI * 2) * 0.5
-        : (rotationProgress - 0.5) * Math.PI * 2; // 0 to ~3.14 (180°)
+        ? 0
+        : (rotationProgress - 0.5) * Math.PI * 2; // 0 to ~3.14 (180°) in second half
 
       // Smooth interpolation
       meshRef.current.rotation.y = THREE.MathUtils.lerp(
@@ -96,11 +98,10 @@ const AlbumCube = () => {
         const progress = self.progress;
         setRotationProgress(progress);
 
-        // Calculate current album index (6 steps for 6 albums)
-        const albumIndex = Math.min(
-          Math.floor(progress * 6),
-          albumCubeConfig.albums.length - 1
-        );
+        // Calculate current album index: first 4 in first half, last 2 in second half
+        const albumIndex = progress < 0.5
+          ? Math.min(Math.floor(progress * 8), 3) // 0-3 in first half
+          : Math.min(4 + Math.floor((progress - 0.5) * 4), 5); // 4-5 in second half
         setCurrentAlbumIndex(albumIndex);
 
         // Velocity-based blur effect
