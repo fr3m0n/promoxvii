@@ -161,7 +161,7 @@ const Hero = () => {
             {heroConfig.ctaPrimary}
           </button>
           <button
-            onClick={() => scrollToSection(heroConfig.ctaSecondaryTarget)}
+            onClick={() => window.open('https://chat.whatsapp.com/D16jMP13sSx2myxeTEmiaW?s=cl&p=a&iam=2', '_blank')}
             className="px-8 py-3 border border-white/30 text-white font-display text-sm uppercase tracking-wider rounded-full hover:border-neon-cyan hover:text-neon-cyan transition-colors duration-300"
           >
             {heroConfig.ctaSecondary}
