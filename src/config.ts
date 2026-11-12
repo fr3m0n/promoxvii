@@ -52,10 +52,11 @@ export const heroConfig: HeroConfig = {
   cornerLabel: "REUNIÓN DE ORO",
   cornerDetail: "1977 — 2027",
   navItems: [
-    { label: "Memorias", sectionId: "albums", icon: "disc" },
-    { label: "Galería", sectionId: "gallery", icon: "play" },
-    { label: "Eventos", sectionId: "tour", icon: "calendar" },
-    { label: "Contacto", sectionId: "contact", icon: "music" },
+    { label: "Inicio", sectionId: "inicio", icon: "disc" },
+    { label: "Memorias", sectionId: "albums", icon: "play" },
+    { label: "Galería", sectionId: "gallery", icon: "calendar" },
+    { label: "Eventos", sectionId: "tour", icon: "music" },
+    { label: "Contacto", sectionId: "contact", icon: "disc" },
   ],
 };
 
