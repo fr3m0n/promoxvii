@@ -25,7 +25,7 @@ const Cube = ({ rotationProgress }: CubeProps) => {
     if (meshRef.current) {
       // Map rotation progress (0-1) to rotation angles
       const targetRotationY = rotationProgress * Math.PI * 2;
-      const targetRotationX = Math.sin(rotationProgress * Math.PI) * 0.3;
+      const targetRotationX = Math.sin(rotationProgress * Math.PI) * 1.2;
 
       // Smooth interpolation
       meshRef.current.rotation.y = THREE.MathUtils.lerp(
@@ -119,7 +119,7 @@ const AlbumCube = () => {
       {/* 3D Canvas */}
       <div className="absolute inset-0 z-10">
         <Canvas
-          camera={{ position: [0, 0, 6], fov: 45 }}
+          camera={{ position: [0, 2, 6], fov: 45 }}
           gl={{ antialias: true, alpha: true }}
         >
           <Suspense fallback={null}>
