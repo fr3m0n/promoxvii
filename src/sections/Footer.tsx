@@ -87,26 +87,22 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Parallax title overlay - bajado para no tapar las caras */}
-        <div
-          ref={titleRef}
-          className="relative z-10 text-center will-change-transform"
-        >
-          <h2 className="font-display text-[5vw] md:text-[4vw] text-white leading-none tracking-tighter">
-            {footerConfig.heroTitle}
-          </h2>
-          <p className="font-mono-custom text-lg text-neon-soft/60 uppercase tracking-[0.5em] mt-4">
-            {footerConfig.heroSubtitle}
-          </p>
-        </div>
-
-        {/* Artist name */}
-        <div className="absolute bottom-20 left-12 z-20">
+        {/* Artist name - movido arriba a la izquierda */}
+        <div className="absolute top-20 left-12 z-20">
           <p className="font-mono-custom text-xs text-white/40 uppercase tracking-wider mb-2">
             {footerConfig.artistLabel}
           </p>
           <h3 className="font-display text-4xl text-white">{footerConfig.artistName}</h3>
           <p className="font-mono-custom text-sm text-neon-soft/60">{footerConfig.artistSubtitle}</p>
+        </div>
+      </div>
+
+      {/* Cita - movida mucho más abajo, antes del pie de página */}
+      <div className="relative bg-void-black py-20 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="font-display text-[5vw] md:text-[4vw] text-white leading-none tracking-tighter">
+            {footerConfig.heroTitle}
+          </h2>
         </div>
       </div>
 
