@@ -112,6 +112,22 @@ const Footer = () => {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
         <div className="max-w-7xl mx-auto">
+          {/* YouTube Video */}
+          <div className="mb-16">
+            <h4 className="font-display text-sm uppercase tracking-wider text-white mb-6">
+              Video de la Promoción
+            </h4>
+            <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl">
+              <iframe
+                src="https://www.youtube.com/embed/kXVzNlbbCRk"
+                title="Video de la Promoción XVII"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            </div>
+          </div>
+
           {/* Footer grid - Main content */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
             {/* Brand */}
