@@ -103,19 +103,19 @@ const Hero = () => {
       {/* Navigation pill */}
       <nav
         ref={navRef}
-        className="fixed top-6 left-1/2 -translate-x-1/2 z-50 nav-pill rounded-full px-2 py-2"
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 nav-pill rounded-full px-1 py-1 sm:px-2 sm:py-2 max-w-[95vw] overflow-x-auto"
       >
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-0.5 sm:gap-1">
           {heroConfig.navItems.map((item) => {
             const IconComponent = ICON_MAP[item.icon];
             return (
               <button
                 key={item.sectionId}
                 onClick={() => scrollToSection(item.sectionId)}
-                className="flex items-center gap-2 px-4 py-2 text-xs font-mono-custom uppercase tracking-wider text-white/80 hover:text-white transition-colors rounded-full hover:bg-white/5"
+                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-mono-custom uppercase tracking-wider text-white/80 hover:text-white transition-colors rounded-full hover:bg-white/5 whitespace-nowrap"
               >
-                <IconComponent className="w-3.5 h-3.5" />
-                <span>{item.label}</span>
+                <IconComponent className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                <span className="hidden xs:inline sm:inline">{item.label}</span>
               </button>
             );
           })}
@@ -147,22 +147,22 @@ const Hero = () => {
         {/* Subtitle */}
         <p
           ref={subtitleRef}
-          className="font-mono-custom text-sm md:text-base text-neon-soft/70 uppercase tracking-[0.3em] mb-8"
+          className="font-mono-custom text-xs sm:text-sm md:text-base text-neon-soft/70 uppercase tracking-[0.15em] sm:tracking-[0.3em] mb-8 px-4 text-center"
         >
           {heroConfig.subtitle}
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
           <button
             onClick={() => scrollToSection(heroConfig.ctaPrimaryTarget)}
-            className="px-8 py-3 bg-white text-void-black font-display text-sm uppercase tracking-wider rounded-full hover:bg-neon-soft transition-colors duration-300"
+            className="px-6 sm:px-8 py-3 bg-white text-void-black font-display text-sm uppercase tracking-wider rounded-full hover:bg-neon-soft transition-colors duration-300 w-full sm:w-auto"
           >
             {heroConfig.ctaPrimary}
           </button>
           <button
             onClick={() => window.open('https://chat.whatsapp.com/D16jMP13sSx2myxeTEmiaW?s=cl&p=a&iam=2', '_blank')}
-            className="px-8 py-3 border border-white/30 text-white font-display text-sm uppercase tracking-wider rounded-full hover:border-neon-cyan hover:text-neon-cyan transition-colors duration-300"
+            className="px-6 sm:px-8 py-3 border border-white/30 text-white font-display text-sm uppercase tracking-wider rounded-full hover:border-neon-cyan hover:text-neon-cyan transition-colors duration-300 w-full sm:w-auto"
           >
             {heroConfig.ctaSecondary}
           </button>
