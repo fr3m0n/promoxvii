@@ -370,7 +370,7 @@ export const footerConfig: FooterConfig = {
   emailLabel: "Email",
   email: "reunion50@colegio.edu",
   phoneLabel: "Teléfono",
-  phone: "+1 234 567 8900",
+  phone: "+34 681 932 178",
   addressLabel: "Dirección",
   address: "Colegio San Jose Obrero, Ciudad",
   newsletterTitle: "Mantente informado",
