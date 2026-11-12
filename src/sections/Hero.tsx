@@ -24,6 +24,7 @@ const Hero = () => {
   const CHARS = heroConfig.decodeChars || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
   const [displayText, setDisplayText] = useState(' '.repeat(TARGET_TEXT.length));
   const [isDecoding, setIsDecoding] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // Decode text effect
   useEffect(() => {
@@ -100,27 +101,62 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-void-black/30 to-void-black" />
       </div>
 
-      {/* Navigation pill */}
+      {/* Navigation pill - solo desktop */}
       <nav
         ref={navRef}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 nav-pill rounded-full px-1 py-1 sm:px-2 sm:py-2 max-w-[95vw] overflow-x-auto"
+        className="fixed top-6 left-1/2 -translate-x-1/2 z-50 nav-pill rounded-full px-2 py-2 hidden sm:block"
       >
-        <div className="flex items-center gap-0.5 sm:gap-1">
+        <div className="flex items-center gap-1">
           {heroConfig.navItems.map((item) => {
             const IconComponent = ICON_MAP[item.icon];
             return (
               <button
                 key={item.sectionId}
                 onClick={() => scrollToSection(item.sectionId)}
-                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-mono-custom uppercase tracking-wider text-white/80 hover:text-white transition-colors rounded-full hover:bg-white/5 whitespace-nowrap"
+                className="flex items-center gap-2 px-4 py-2 text-xs font-mono-custom uppercase tracking-wider text-white/80 hover:text-white transition-colors rounded-full hover:bg-white/5"
               >
-                <IconComponent className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                <span className="hidden xs:inline sm:inline">{item.label}</span>
+                <IconComponent className="w-3.5 h-3.5" />
+                <span>{item.label}</span>
               </button>
             );
           })}
         </div>
       </nav>
+
+      {/* Hamburger menu - solo mobil */}
+      <button
+        onClick={() => setMenuOpen(!menuOpen)}
+        className="fixed top-4 right-4 z-50 sm:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 nav-pill rounded-full"
+        aria-label="Abrir menú"
+      >
+        <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+        <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+        <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+      </button>
+
+      {/* Mobile menu dropdown */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 sm:hidden" onClick={() => setMenuOpen(false)}>
+          <div className="absolute inset-0 bg-void-black/80 backdrop-blur-sm" />
+          <div className="absolute top-16 right-4 left-4 nav-pill rounded-2xl p-4" onClick={(e) => e.stopPropagation()}>
+            <div className="flex flex-col gap-2">
+              {heroConfig.navItems.map((item) => {
+                const IconComponent = ICON_MAP[item.icon];
+                return (
+                  <button
+                    key={item.sectionId}
+                    onClick={() => { scrollToSection(item.sectionId); setMenuOpen(false); }}
+                    className="flex items-center gap-3 px-4 py-3 text-sm font-mono-custom uppercase tracking-wider text-white/80 hover:text-white transition-colors rounded-xl hover:bg-white/5"
+                  >
+                    <IconComponent className="w-4 h-4" />
+                    <span>{item.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Hero: contenido pegado al fondo, texto pequeño para ver caras */}
       <div className="relative z-10 flex flex-col items-center justify-end h-full pb-12 px-4">
