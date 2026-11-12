@@ -172,12 +172,14 @@ const Footer = () => {
                     Inicio: '#inicio',
                     Galería: '#gallery',
                     Eventos: '#tour',
-                    'Confirmar asistencia': '#contact',
+                    'Confirmar asistencia': 'https://chat.whatsapp.com/D16jMP13sSx2myxeTEmiaW?s=cl&p=a&iam=2',
                   };
                   return (
                     <li key={link}>
                       <a
                         href={linkMap[link] || '#'}
+                        target={linkMap[link]?.startsWith('http') ? '_blank' : undefined}
+                        rel={linkMap[link]?.startsWith('http') ? 'noopener noreferrer' : undefined}
                         className="text-sm text-white/50 hover:text-neon-soft transition-colors flex items-center gap-2 group"
                       >
                         <span>{link}</span>
