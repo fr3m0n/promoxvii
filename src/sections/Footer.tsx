@@ -119,10 +119,11 @@ const Footer = () => {
             </h4>
             <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl">
               <iframe
-                src="https://www.youtube.com/embed/kXVzNlbbCRk"
+                src="https://www.youtube.com/embed/kXVzNlbbCRk?rel=0&modestbranding=1&iv_load_policy=3"
                 title="Video de la Promoción XVII"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                loading="lazy"
                 className="absolute inset-0 w-full h-full"
               />
             </div>
