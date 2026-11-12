@@ -69,7 +69,7 @@ const Footer = () => {
       className="relative w-full bg-void-black overflow-hidden"
     >
       {/* Artist portrait section */}
-      <div className="relative h-screen flex items-center justify-center overflow-hidden">
+      <div className="relative h-screen flex items-end justify-center overflow-hidden pb-20">
         {/* Background portrait */}
         <div
           ref={portraitRef}
@@ -87,12 +87,12 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Parallax title overlay */}
+        {/* Parallax title overlay - bajado para no tapar las caras */}
         <div
           ref={titleRef}
           className="relative z-10 text-center will-change-transform"
         >
-          <h2 className="font-display text-[8vw] md:text-[6vw] text-white leading-none tracking-tighter">
+          <h2 className="font-display text-[5vw] md:text-[4vw] text-white leading-none tracking-tighter">
             {footerConfig.heroTitle}
           </h2>
           <p className="font-mono-custom text-lg text-neon-soft/60 uppercase tracking-[0.5em] mt-4">
