@@ -37,7 +37,7 @@ const Cube = ({ rotationProgress }: CubeProps) => {
       // First half: small tilt to show 4 sides. Second half: tilt to show top/bottom faces
       const targetRotationX = rotationProgress < 0.5
         ? Math.sin(rotationProgress * Math.PI * 2) * 0.5
-        : (rotationProgress - 0.5) * Math.PI; // 0 to ~1.57 (90°)
+        : (rotationProgress - 0.5) * Math.PI * 2; // 0 to ~3.14 (180°)
 
       // Smooth interpolation
       meshRef.current.rotation.y = THREE.MathUtils.lerp(
