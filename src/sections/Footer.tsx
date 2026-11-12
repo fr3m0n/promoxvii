@@ -23,6 +23,7 @@ const Footer = () => {
   const portraitRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const [hoveredImage, setHoveredImage] = useState<number | null>(null);
+  const [radioStation, setRadioStation] = useState<'salsa' | 'jazz'>('salsa');
   const scrollTriggerRefs = useRef<ScrollTrigger[]>([]);
 
   useEffect(() => {
@@ -220,7 +221,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Radio Player */}
+            {/* Radio Player - Salsa / Smooth Jazz */}
             <div>
               <h4 className="font-display text-sm uppercase tracking-wider text-white mb-6">
                 Radio Promo XVII
@@ -228,13 +229,45 @@ const Footer = () => {
               <p className="text-sm text-white/50 mb-4">
                 Escucha nuestra radio en vivo mientras esperas el evento.
               </p>
+
+              {/* Selector de radio */}
+              <div className="flex gap-2 mb-3">
+                <button
+                  onClick={() => setRadioStation('salsa')}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer ${
+                    radioStation === 'salsa'
+                      ? 'bg-neon-cyan text-void-black'
+                      : 'bg-white/10 text-white/70 hover:bg-white/20'
+                  }`}
+                >
+                  Salsa
+                </button>
+                <button
+                  onClick={() => setRadioStation('jazz')}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer ${
+                    radioStation === 'jazz'
+                      ? 'bg-neon-cyan text-void-black'
+                      : 'bg-white/10 text-white/70 hover:bg-white/20'
+                  }`}
+                >
+                  Smooth Jazz
+                </button>
+              </div>
+
               <div className="bg-white/5 border border-white/10 rounded-lg p-4">
                 <audio
+                  key={radioStation}
                   controls
+                  autoPlay
                   className="w-full"
                   style={{ height: '32px' }}
                 >
-                  <source src="https://stream.zeno.fm/nftb1pqe408uv" type="audio/mpeg" />
+                  <source
+                    src={radioStation === 'salsa'
+                      ? 'https://stream.zeno.fm/nftb1pqe408uv'
+                      : 'https://stream.zeno.fm/atswxk87na0uv'}
+                    type="audio/mpeg"
+                  />
                   Tu navegador no soporta el reproductor de audio.
                 </audio>
               </div>
