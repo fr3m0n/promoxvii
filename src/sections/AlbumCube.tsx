@@ -89,16 +89,16 @@ const AlbumCube = () => {
     const st = ScrollTrigger.create({
       trigger: sectionRef.current,
       start: 'top top',
-      end: '+=300%',
+      end: '+=600%',
       scrub: 1,
       pin: true,
       onUpdate: (self) => {
         const progress = self.progress;
         setRotationProgress(progress);
 
-        // Calculate current album index
+        // Calculate current album index (6 steps for 6 albums)
         const albumIndex = Math.min(
-          Math.floor(progress * 4),
+          Math.floor(progress * 6),
           albumCubeConfig.albums.length - 1
         );
         setCurrentAlbumIndex(albumIndex);
