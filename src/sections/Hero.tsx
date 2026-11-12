@@ -92,7 +92,7 @@ const Hero = () => {
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-top"
           style={{ backgroundImage: `url(${heroConfig.backgroundImage})` }}
         />
         {/* Dark overlay */}
@@ -123,17 +123,6 @@ const Hero = () => {
         </div>
       </nav>
 
-      {/* Hamburger menu - solo mobil */}
-      <button
-        onClick={() => setMenuOpen(!menuOpen)}
-        className="fixed top-4 right-4 z-50 sm:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 nav-pill rounded-full"
-        aria-label="Abrir menú"
-      >
-        <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-        <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
-        <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-      </button>
-
       {/* Mobile menu dropdown */}
       {menuOpen && (
         <div className="fixed inset-0 z-40 sm:hidden" onClick={() => setMenuOpen(false)}>
@@ -160,14 +149,25 @@ const Hero = () => {
 
       {/* Hero: contenido pegado al fondo, texto pequeño para ver caras */}
       <div className="relative z-10 flex flex-col items-center justify-end h-full pb-20 sm:pb-12 px-4">
-        {/* Logo / Brand */}
-        <div className="absolute top-4 left-4 sm:top-8 sm:left-8">
+        {/* Logo / Brand y Menu - misma linea */}
+        <div className="absolute top-4 left-4 right-4 sm:top-8 sm:left-8 sm:right-8 flex items-center justify-between z-50">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-neon-cyan/20 flex items-center justify-center">
               <Disc className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neon-cyan" />
             </div>
             <span className="font-display text-sm sm:text-lg text-white">{heroConfig.brandName}</span>
           </div>
+          
+          {/* Hamburger menu - solo mobil */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="sm:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 nav-pill rounded-full"
+            aria-label="Abrir menú"
+          >
+            <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+            <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          </button>
         </div>
 
         {/* Main title with decode effect */}
@@ -208,8 +208,8 @@ const Hero = () => {
       {/* Decorative elements */}
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-neon-cyan/30 to-transparent" />
 
-      {/* Corner accents */}
-      <div className="absolute top-8 right-8 text-right">
+      {/* Corner accents - oculto en movil para no solaparse con el menu */}
+      <div className="absolute top-8 right-8 text-right hidden sm:block">
         <p className="font-mono-custom text-xs text-white/40 uppercase tracking-wider">{heroConfig.cornerLabel}</p>
         <p className="font-mono-custom text-xs text-neon-soft/60">{heroConfig.cornerDetail}</p>
       </div>
