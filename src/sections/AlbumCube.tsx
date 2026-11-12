@@ -18,6 +18,15 @@ const Cube = ({ rotationProgress }: CubeProps) => {
 
   const textures = useTexture(albumCubeConfig.cubeTextures);
 
+  // Fix texture orientation so photos don't appear rotated
+  textures.forEach((texture, index) => {
+    texture.center.set(0.5, 0.5);
+    // Rotate top and bottom faces to correct orientation
+    if (index === 2 || index === 3) {
+      texture.rotation = Math.PI / 2;
+    }
+  });
+
   // Responsive cube size
   const cubeSize = Math.min(viewport.width * 0.4, 3);
 
