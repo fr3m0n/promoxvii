@@ -159,21 +159,21 @@ const Hero = () => {
       )}
 
       {/* Hero: contenido pegado al fondo, texto pequeño para ver caras */}
-      <div className="relative z-10 flex flex-col items-center justify-end h-full pb-12 px-4">
+      <div className="relative z-10 flex flex-col items-center justify-end h-full pb-20 sm:pb-12 px-4">
         {/* Logo / Brand */}
-        <div className="absolute top-8 left-8">
+        <div className="absolute top-4 left-4 sm:top-8 sm:left-8">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-neon-cyan/20 flex items-center justify-center">
-              <Disc className="w-4 h-4 text-neon-cyan" />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-neon-cyan/20 flex items-center justify-center">
+              <Disc className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neon-cyan" />
             </div>
-            <span className="font-display text-lg text-white">{heroConfig.brandName}</span>
+            <span className="font-display text-sm sm:text-lg text-white">{heroConfig.brandName}</span>
           </div>
         </div>
 
         {/* Main title with decode effect */}
         <h1
           ref={titleRef}
-          className="decode-text text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-none tracking-tighter mb-6"
+          className="decode-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-none tracking-tighter mb-4 sm:mb-6"
         >
           <span className={`${isDecoding ? 'text-glow-cyan' : ''} transition-all duration-300`}>
             {displayText}
@@ -183,7 +183,7 @@ const Hero = () => {
         {/* Subtitle */}
         <p
           ref={subtitleRef}
-          className="font-mono-custom text-xs sm:text-sm md:text-base text-neon-soft/70 uppercase tracking-[0.15em] sm:tracking-[0.3em] mb-8 px-4 text-center"
+          className="font-mono-custom text-xs sm:text-sm md:text-base text-neon-soft/70 uppercase tracking-[0.15em] sm:tracking-[0.3em] mb-6 sm:mb-8 px-4 text-center"
         >
           {heroConfig.subtitle}
         </p>
