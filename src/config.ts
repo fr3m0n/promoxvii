@@ -369,7 +369,7 @@ export const footerConfig: FooterConfig = {
   quickLinks: ["Inicio", "Galería", "Eventos", "Confirmar asistencia"],
   contactTitle: "Contacto",
   emailLabel: "Email",
-  email: "reunion50@colegio.edu",
+  email: "promocionxvii.sjo.50@gmail.com",
   phoneLabel: "Teléfono",
   phone: "+34 681 932 178",
   addressLabel: "Dirección",
