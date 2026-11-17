@@ -163,8 +163,8 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Hero: contenido pegado al fondo, texto pequeño para ver caras */}
-      <div className="relative z-10 flex flex-col items-center justify-end h-full pb-20 sm:pb-12 px-4">
+      {/* Hero: contenido centrado en el hueco vacío, por encima de las cabezas del grupo */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 pb-[14vh] sm:pb-[16vh]">
         {/* Logo / Brand y Menu - misma linea */}
         <div className="absolute top-4 left-4 right-4 sm:top-8 sm:left-8 sm:right-8 flex items-center justify-between z-50">
           <div className="flex items-center gap-2">
