@@ -163,6 +163,74 @@ const TourSchedule = () => {
           </div>
         </div>
 
+        {/* Cómo llegar - Mapas */}
+        <div className="mt-20">
+          <div className="mb-8">
+            <p className="font-mono-custom text-xs text-[#1F1F1F]/60 uppercase tracking-wider mb-2">
+              CÓMO LLEGAR
+            </p>
+            <h3 className="font-display text-3xl md:text-4xl text-[#1F1F1F]">
+              Lugares de celebración
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Hotel Bracamonte */}
+            <div className="rounded-2xl overflow-hidden bg-white/50 backdrop-blur-sm border border-[#1F1F1F]/10">
+              <iframe
+                src="https://maps.google.com/maps?q=-8.0846598,-79.1212522&z=16&output=embed"
+                title="Mapa: Hotel Bracamonte"
+                loading="lazy"
+                className="w-full h-64 md:h-72 border-0"
+              />
+              <div className="p-5 flex items-center justify-between gap-3">
+                <div>
+                  <p className="font-display text-lg text-[#1F1F1F]">Hotel Bracamonte</p>
+                  <p className="font-mono-custom text-xs text-[#1F1F1F]/50">
+                    Recepción, desayunos y cenas
+                  </p>
+                </div>
+                <a
+                  href="https://maps.app.goo.gl/hcLX6czuS4poyGGn7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#1F1F1F] text-white font-display text-xs uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors flex-shrink-0"
+                >
+                  <MapPin className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Abrir en</span> Maps
+                </a>
+              </div>
+            </div>
+
+            {/* Colegio San José Obrero */}
+            <div className="rounded-2xl overflow-hidden bg-white/50 backdrop-blur-sm border border-[#1F1F1F]/10">
+              <iframe
+                src="https://maps.google.com/maps?q=-8.1341259,-79.0394331&z=16&output=embed"
+                title="Mapa: Colegio San José Obrero"
+                loading="lazy"
+                className="w-full h-64 md:h-72 border-0"
+              />
+              <div className="p-5 flex items-center justify-between gap-3">
+                <div>
+                  <p className="font-display text-lg text-[#1F1F1F]">Colegio San José Obrero</p>
+                  <p className="font-mono-custom text-xs text-[#1F1F1F]/50">
+                    Visita, placa, misa y fotos
+                  </p>
+                </div>
+                <a
+                  href="https://maps.app.goo.gl/KQ7opzcpwToJ9ssX9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#1F1F1F] text-white font-display text-xs uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors flex-shrink-0"
+                >
+                  <MapPin className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Abrir en</span> Maps
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom CTA */}
         <div className="mt-20 text-center">
           <p className="font-mono-custom text-sm text-[#1F1F1F]/60 mb-4">
