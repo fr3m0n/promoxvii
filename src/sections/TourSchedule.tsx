@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { MapPin, Clock, FileText } from 'lucide-react';
+import { MapPin, Clock, FileText, ChevronDown, HelpCircle } from 'lucide-react';
 import { tourScheduleConfig } from '../config';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -68,6 +68,38 @@ const TourSchedule = () => {
   };
 
   const TOUR_DATES = tourScheduleConfig.tourDates;
+
+  // Preguntas frecuentes (respuestas orientativas: el comité puede corregirlas)
+  const FAQS = [
+    {
+      q: '¿Cómo confirmo mi asistencia?',
+      a: 'Entrando al grupo de WhatsApp de la promoción (botón "Confirmar Asistencia") o escribiendo al correo del comité: promocionxvii.sjo.50@gmail.com. Indica tu nombre y, si vienes acompañado, cuántas personas seréis en total.',
+    },
+    {
+      q: '¿Puedo asistir con acompañantes o familiares?',
+      a: 'Sí, la celebración es para compartir. Al confirmar tu asistencia, indica cuántas personas os acompañarán para que el comité planifique la capacidad de los restaurantes y del hotel.',
+    },
+    {
+      q: '¿Cuáles son los costos y las formas de pago?',
+      a: 'El comité está preparando el detalle de costos por persona (almuerzos, cenas y celebración) y las formas de pago disponibles. La información se publicará pronto en esta sección y en el PDF del programa.',
+    },
+    {
+      q: '¿Cómo reservo en el Hotel Bracamonte?',
+      a: 'El Hotel Bracamonte será el punto central del reencuentro (recepción, desayunos y cenas). El comité negociará una tarifa especial de grupo: reserva a través del comité escribiendo al correo promocionxvii.sjo.50@gmail.com para obtener el precio de la promoción.',
+    },
+    {
+      q: '¿Hay un código de vestimenta?',
+      a: 'Para la cena con música del recuerdo se sugiere vestimenta elegante (o casual elegante). Para las actividades del día en el colegio y el paseo de despedida, lo cómodo y fresco es lo ideal.',
+    },
+    {
+      q: '¿Qué recomendaciones hay para quienes viajamos desde el extranjero?',
+      a: 'Trujillo cuenta con el aeropuerto CAP FAP Carlos Martínez de Pinillos, con vuelos diarios desde Lima, o puedes llegar en bus desde Lima (aprox. 8 horas). Agosto es temporada de buen clima en Trujillo. Si necesitas ayuda con tu itinerario, escríbele al comité y os orientaremos.',
+    },
+    {
+      q: '¿Dónde veo el programa completo de los tres días?',
+      a: 'Puedes descargar el programa oficial completo en PDF desde el botón "Ver Programa Completo (PDF)" que está justo debajo de estas preguntas.',
+    },
+  ];
 
   return (
     <section
@@ -231,6 +263,27 @@ const TourSchedule = () => {
           </div>
         </div>
 
+        {/* Preguntas frecuentes */}
+        <div className="mt-20">
+          <div className="mb-8">
+            <p className="font-mono-custom text-xs text-[#1F1F1F]/60 uppercase tracking-wider mb-2">
+              PREGUNTAS FRECUENTES
+            </p>
+            <h3 className="font-display text-3xl md:text-4xl text-[#1F1F1F]">
+              Todo lo que necesitas saber
+            </h3>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-3">
+            {FAQS.map((faq, index) => (
+              <FaqItem key={index} question={faq.q} answer={faq.a} />
+            ))}
+            <p className="font-mono-custom text-xs text-[#1F1F1F]/40 text-center pt-4">
+              Respuestas orientativas — el comité organizador confirmará los detalles finales.
+            </p>
+          </div>
+        </div>
+
         {/* Bottom CTA */}
         <div className="mt-20 text-center">
           <p className="font-mono-custom text-sm text-[#1F1F1F]/60 mb-4">
@@ -253,6 +306,32 @@ const TourSchedule = () => {
       {/* Decorative elements */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#1F1F1F]/20 to-transparent" />
     </section>
+  );
+};
+
+// Item plegable de preguntas frecuentes
+const FaqItem = ({ question, answer }: { question: string; answer: string }) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="tour-item rounded-xl bg-white/50 backdrop-blur-sm border border-[#1F1F1F]/10 overflow-hidden">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center gap-3 p-5 text-left cursor-pointer hover:bg-white/70 transition-colors"
+      >
+        <HelpCircle className="w-4 h-4 text-[#1F1F1F]/50 flex-shrink-0" />
+        <span className="font-display text-base text-[#1F1F1F] flex-grow">{question}</span>
+        <ChevronDown
+          className={`w-4 h-4 text-[#1F1F1F]/50 flex-shrink-0 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+        />
+      </button>
+      {open && (
+        <div className="px-5 pb-5 pl-12">
+          <p className="text-sm text-[#1F1F1F]/70 leading-relaxed">{answer}</p>
+        </div>
+      )}
+    </div>
   );
 };
 
