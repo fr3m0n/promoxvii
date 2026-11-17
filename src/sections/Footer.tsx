@@ -57,11 +57,7 @@ const Footer = () => {
     };
   }, []);
 
-  const handleContactClick = () => {
-    if (footerConfig.subscribeAlertMessage) {
-      alert(footerConfig.subscribeAlertMessage);
-    }
-  };
+  const [legalOpen, setLegalOpen] = useState(false);
 
   return (
     <section
@@ -314,14 +310,81 @@ const Footer = () => {
             </p>
             <div className="flex gap-6">
               {footerConfig.bottomLinks.map((link) => (
-                <a key={link} href="#" className="text-xs text-white/30 hover:text-white/60 transition-colors">
+                <button
+                  key={link}
+                  onClick={() => setLegalOpen(true)}
+                  className="text-xs text-white/30 hover:text-white/60 transition-colors cursor-pointer"
+                >
                   {link}
-                </a>
+                </button>
               ))}
             </div>
           </div>
         </div>
       </div>
+
+      {/* Modal: Aviso legal y privacidad */}
+      {legalOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setLegalOpen(false)}
+        >
+          <div
+            className="nav-pill rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 sm:p-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start justify-between gap-4 mb-6">
+              <h3 className="font-display text-2xl text-white">Aviso legal y privacidad</h3>
+              <button
+                onClick={() => setLegalOpen(false)}
+                className="text-white/50 hover:text-white transition-colors text-2xl leading-none"
+                aria-label="Cerrar"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="font-mono-custom text-sm text-white/60 leading-relaxed space-y-4">
+              <p>
+                Esta página web de la <span className="text-white">Promoción XVII</span> (Colegio
+                San José Obrero, Trujillo — 1977/2027) es un proyecto conmemorativo sin fines
+                comerciales, gestionado por el comité organizador de la promoción.
+              </p>
+              <div>
+                <h4 className="text-white text-xs uppercase tracking-wider mb-1">Datos personales</h4>
+                <p>
+                  No recopilamos datos automáticamente. Las fotografías, biografías y mensajes que
+                  se publiquen en la sección "Nuestros Compañeros" solo se incluyen con la
+                  autorización expresa de cada persona, quien puede solicitar su retirada en
+                  cualquier momento escribiendo a{' '}
+                  <a href="mailto:promocionxvii.sjo.50@gmail.com" className="text-neon-cyan hover:underline">
+                    promocionxvii.sjo.50@gmail.com
+                  </a>
+                  .
+                </p>
+              </div>
+              <div>
+                <h4 className="text-white text-xs uppercase tracking-wider mb-1">Enlaces externos</h4>
+                <p>
+                  Esta web enlaza al grupo de WhatsApp de la promoción y a videos alojados en
+                  YouTube. Estas plataformas tienen sus propias políticas de privacidad, ajenas a
+                  esta página.
+                </p>
+              </div>
+              <div>
+                <h4 className="text-white text-xs uppercase tracking-wider mb-1">Contacto</h4>
+                <p>
+                  Para cualquier consulta sobre este aviso, el uso de imágenes o la retirada de
+                  contenido:{' '}
+                  <a href="mailto:promocionxvii.sjo.50@gmail.com" className="text-neon-cyan hover:underline">
+                    promocionxvii.sjo.50@gmail.com
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

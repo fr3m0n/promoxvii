@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { Play, Music, Disc, Calendar } from 'lucide-react';
-import { heroConfig } from '../config';
+import { Play, Music, Disc, Calendar, Users } from 'lucide-react';
+import { heroConfig, confirmados } from '../config';
 
 const ICON_MAP = {
   disc: Disc,
@@ -233,6 +233,18 @@ const Hero = () => {
             {heroConfig.ctaSecondary}
           </button>
         </div>
+
+        {/* Confirmados (visible cuando hay más de 0) */}
+        {confirmados > 0 && (
+          <div className="mt-5 flex items-center justify-center gap-2">
+            <Users className="w-4 h-4 text-neon-cyan" />
+            <span className="font-mono-custom text-xs sm:text-sm uppercase tracking-wider text-white/70">
+              Ya somos{' '}
+              <span className="text-neon-cyan font-bold">{confirmados}</span>{' '}
+              confirmados
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Decorative elements */}

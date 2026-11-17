@@ -61,6 +61,11 @@ export const heroConfig: HeroConfig = {
   ],
 };
 
+// -- Confirmados (el comité actualiza este número a mano) ----------------------
+// Cuando el comité confirme asistentes, cámbialo de 0 al número real.
+// Mientras sea 0, el contador no aparece en la web.
+export const confirmados = 0;
+
 // -- Album Cube Section -------------------------------------------------------
 export interface Album {
   id: number;
