@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MapPin, Clock, FileText, ChevronDown, HelpCircle } from 'lucide-react';
 import { tourScheduleConfig } from '../config';
+import FormularioInscripcion from './FormularioInscripcion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -283,6 +284,9 @@ const TourSchedule = () => {
             </p>
           </div>
         </div>
+
+        {/* Formulario de inscripción */}
+        <FormularioInscripcion />
 
         {/* Bottom CTA */}
         <div className="mt-20 text-center">
