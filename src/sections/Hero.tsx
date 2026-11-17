@@ -26,20 +26,21 @@ const Hero = () => {
   const [isDecoding, setIsDecoding] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Cuenta regresiva hasta el Gran Reencuentro (26 de agosto de 2027)
+  // Cuenta regresiva en vivo hasta el Gran Reencuentro (26 de agosto de 2027)
   const EVENT_DATE = new Date(2027, 7, 26); // mes 7 = agosto (los meses van de 0 a 11)
-  const [daysLeft, setDaysLeft] = useState(() =>
-    Math.max(0, Math.ceil((EVENT_DATE.getTime() - Date.now()) / 86400000))
-  );
+  const [now, setNow] = useState(Date.now());
 
   useEffect(() => {
-    const update = () =>
-      setDaysLeft(Math.max(0, Math.ceil((EVENT_DATE.getTime() - Date.now()) / 86400000)));
-    update();
-    const interval = setInterval(update, 60000); // actualiza cada minuto
+    const interval = setInterval(() => setNow(Date.now()), 1000); // actualiza cada segundo
     return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const remaining = Math.max(0, EVENT_DATE.getTime() - now);
+  const daysLeft = Math.floor(remaining / 86400000);
+  const hoursLeft = Math.floor((remaining % 86400000) / 3600000);
+  const minutesLeft = Math.floor((remaining % 3600000) / 60000);
+  const secondsLeft = Math.floor((remaining % 60000) / 1000);
+  const pad = (n: number) => String(n).padStart(2, '0');
 
   // Decode text effect
   useEffect(() => {
@@ -203,13 +204,17 @@ const Hero = () => {
           {heroConfig.subtitle}
         </p>
 
-        {/* Cuenta regresiva al Gran Reencuentro */}
-        <div className="nav-pill rounded-full px-5 py-2.5 mb-6 sm:mb-8 flex items-center gap-3">
-          <Calendar className="w-4 h-4 text-neon-cyan" />
-          <span className="font-mono-custom text-xs sm:text-sm uppercase tracking-wider text-white/80">
+        {/* Cuenta regresiva en vivo al Gran Reencuentro */}
+        <div className="nav-pill rounded-full px-4 sm:px-5 py-2.5 mb-6 sm:mb-8 flex items-center gap-2 sm:gap-3">
+          <Calendar className="w-4 h-4 text-neon-cyan flex-shrink-0" />
+          <span className="font-mono-custom text-[10px] sm:text-sm uppercase tracking-wider text-white/80 whitespace-nowrap">
             Faltan{' '}
             <span className="text-neon-cyan font-bold">{daysLeft}</span>{' '}
-            {daysLeft === 1 ? 'día' : 'días'} — 26 de agosto de 2027
+            {daysLeft === 1 ? 'día' : 'días'}{' '}
+            <span className="text-neon-cyan font-bold tabular-nums">
+              {pad(hoursLeft)}:{pad(minutesLeft)}:{pad(secondsLeft)}
+            </span>
+            <span className="hidden sm:inline"> — 26 de agosto de 2027</span>
           </span>
         </div>
 
