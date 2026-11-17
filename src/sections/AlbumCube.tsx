@@ -27,8 +27,8 @@ const Cube = ({ rotationProgress }: CubeProps) => {
     }
   });
 
-  // Responsive cube size
-  const cubeSize = Math.min(viewport.width * 0.4, 3);
+  // Responsive cube size (más pequeño para que quepa entre el título y los textos)
+  const cubeSize = Math.min(viewport.width * 0.32, 2.4);
 
   useFrame(() => {
     if (meshRef.current) {
@@ -56,7 +56,7 @@ const Cube = ({ rotationProgress }: CubeProps) => {
   });
 
   return (
-    <mesh ref={meshRef} castShadow>
+    <mesh ref={meshRef} castShadow position={[0, -0.2, 0]}>
       <boxGeometry args={[cubeSize, cubeSize, cubeSize]} />
       {textures.map((texture, index) => (
         <meshStandardMaterial
@@ -134,7 +134,7 @@ const AlbumCube = () => {
       {/* 3D Canvas */}
       <div className="absolute inset-0 z-10">
         <Canvas
-          camera={{ position: [0, 3, 5], fov: 50 }}
+          camera={{ position: [0, 1.6, 6.5], fov: 45 }}
           gl={{ antialias: true, alpha: true }}
         >
           <Suspense fallback={null}>
