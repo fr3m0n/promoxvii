@@ -1,24 +1,50 @@
 import { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 
-// Fotos de la galería ampliada
-const galleryPhotos = [
-  { src: '/hero-graduation.jpg', title: 'Foto Principal', year: '1977' },
-  { src: '/cube-graduation.jpg', title: 'Graduación', year: '1977' },
-  { src: '/cube-schooldays.jpg', title: 'Días de Escuela', year: '1975' },
-  { src: '/cube-reunion.jpg', title: 'Reuniones', year: '1976' },
-  { src: '/cube-recent.jpg', title: 'Hoy', year: '2026' },
-  { src: '/cube-legacy.jpg', title: 'Legado', year: '1977' },
-  { src: '/cube-celebration.jpg', title: 'Celebración', year: '2027' },
-  { src: '/gallery-classroom.jpg', title: 'En el Aula', year: '1975' },
-  { src: '/gallery-sports.jpg', title: 'Equipo Campeón', year: '1976' },
-  { src: '/gallery-dance.jpg', title: 'Baile de Prom', year: '1977' },
-  { src: '/gallery-diploma.jpg', title: 'Graduación', year: '1977' },
-  { src: '/gallery-friends.jpg', title: 'Mejores Amigos', year: '1976' },
-  { src: '/gallery-building.jpg', title: 'Nuestro Colegio', year: '1977' },
-  { src: '/gallery-reunion25.jpg', title: 'Reunión 25 Años', year: '2002' },
-  { src: '/gallery-recent.jpg', title: 'Encuentro Reciente', year: '2026' },
-  { src: '/footer-group.jpg', title: 'Celebración 50 Años', year: '2027' },
+// =============================================================================
+// Galería de Recuerdos — organizada por épocas en pestañas.
+// Cuando lleguen fotos nuevas del comité: añadir una entrada a `galleryPhotos`
+// con su `era` correspondiente y aparecerá automáticamente en su pestaña.
+// =============================================================================
+
+type Era = 'escolar' | 'graduacion' | 'reencuentros' | 'hoy';
+
+const ERAS: { id: Era; label: string }[] = [
+  { id: 'escolar', label: 'Época Escolar' },
+  { id: 'graduacion', label: 'Graduación 1977' },
+  { id: 'reencuentros', label: 'Reencuentros' },
+  { id: 'hoy', label: 'Hoy 2026-27' },
+];
+
+interface Foto {
+  src: string;
+  title: string;
+  year: string;
+  era: Era;
+}
+
+// Fotos de la galería, clasificadas por época
+const galleryPhotos: Foto[] = [
+  // Época escolar (1975-1976)
+  { src: '/cube-schooldays.jpg', title: 'Días de Escuela', year: '1975', era: 'escolar' },
+  { src: '/gallery-classroom.jpg', title: 'En el Aula', year: '1975', era: 'escolar' },
+  { src: '/gallery-sports.jpg', title: 'Equipo Campeón', year: '1976', era: 'escolar' },
+  { src: '/gallery-friends.jpg', title: 'Mejores Amigos', year: '1976', era: 'escolar' },
+  // Graduación (1977)
+  { src: '/hero-graduation.jpg', title: 'Foto Principal', year: '1977', era: 'graduacion' },
+  { src: '/cube-graduation.jpg', title: 'Graduación', year: '1977', era: 'graduacion' },
+  { src: '/gallery-diploma.jpg', title: 'Recibiendo Diplomas', year: '1977', era: 'graduacion' },
+  { src: '/gallery-dance.jpg', title: 'Baile de Prom', year: '1977', era: 'graduacion' },
+  { src: '/gallery-building.jpg', title: 'Nuestro Colegio', year: '1977', era: 'graduacion' },
+  { src: '/cube-legacy.jpg', title: 'Legado', year: '1977', era: 'graduacion' },
+  // Reencuentros
+  { src: '/cube-reunion.jpg', title: 'Reuniones', year: '1976', era: 'reencuentros' },
+  { src: '/gallery-reunion25.jpg', title: 'Reunión de 25 Años', year: '2002', era: 'reencuentros' },
+  // Hoy (2026-2027)
+  { src: '/gallery-recent.jpg', title: 'Encuentro Reciente', year: '2026', era: 'hoy' },
+  { src: '/cube-recent.jpg', title: 'Hoy', year: '2026', era: 'hoy' },
+  { src: '/cube-celebration.jpg', title: 'Celebración', year: '2027', era: 'hoy' },
+  { src: '/footer-group.jpg', title: 'Celebración 50 Años', year: '2027', era: 'hoy' },
 ];
 
 // Videos de la promoción
@@ -27,8 +53,12 @@ const galleryVideos = [
 ];
 
 const GalleryExpanded = () => {
+  const [activeEra, setActiveEra] = useState<Era>('graduacion');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [lightboxVideo, setLightboxVideo] = useState<number | null>(null);
+
+  // Fotos de la pestaña activa (el lightbox navega solo dentro de esta época)
+  const fotosActuales = galleryPhotos.filter((p) => p.era === activeEra);
 
   const openLightbox = (index: number) => setLightboxIndex(index);
   const closeLightbox = () => {
@@ -37,12 +67,12 @@ const GalleryExpanded = () => {
   };
   const nextImage = () => {
     if (lightboxIndex !== null) {
-      setLightboxIndex((lightboxIndex + 1) % galleryPhotos.length);
+      setLightboxIndex((lightboxIndex + 1) % fotosActuales.length);
     }
   };
   const prevImage = () => {
     if (lightboxIndex !== null) {
-      setLightboxIndex((lightboxIndex - 1 + galleryPhotos.length) % galleryPhotos.length);
+      setLightboxIndex((lightboxIndex - 1 + fotosActuales.length) % fotosActuales.length);
     }
   };
 
@@ -54,22 +84,48 @@ const GalleryExpanded = () => {
       {/* Section header */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 mb-12">
         <p className="font-mono-custom text-xs text-neon-soft/60 uppercase tracking-wider mb-2">
-          GALERÍA COMPLETA
+          GALERÍA POR ÉPOCAS
         </p>
         <h2 className="font-display text-4xl md:text-5xl text-white">
-          Todos los Recuerdos
+          Nuestros Recuerdos
         </h2>
-        <p className="font-mono-custom text-sm text-white/50 mt-4">
-          Desplázate por todas las fotos de nuestra promoción. Haz clic en cualquier imagen para verla en grande.
+        <p className="font-mono-custom text-sm text-white/50 mt-4 max-w-2xl">
+          Elige una época para viajar en el tiempo. Haz clic en cualquier imagen para verla en grande.
         </p>
       </div>
 
-      {/* Photo grid */}
+      {/* Pestañas por época */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-10">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+          {ERAS.map((era) => {
+            const count = galleryPhotos.filter((p) => p.era === era.id).length;
+            const isActive = era.id === activeEra;
+            return (
+              <button
+                key={era.id}
+                onClick={() => { setActiveEra(era.id); setLightboxIndex(null); }}
+                className={`px-4 sm:px-5 py-2 rounded-full font-mono-custom text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                  isActive
+                    ? 'bg-neon-cyan text-void-black font-bold'
+                    : 'nav-pill text-white/70 hover:text-white'
+                }`}
+              >
+                {era.label}
+                <span className={`ml-2 ${isActive ? 'text-void-black/60' : 'text-white/40'}`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Photo grid (época activa) */}
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {galleryPhotos.map((photo, index) => (
+          {fotosActuales.map((photo, index) => (
             <div
-              key={index}
+              key={photo.src + index}
               className="relative group cursor-pointer overflow-hidden rounded-xl bg-white/5 aspect-[4/3]"
               onClick={() => openLightbox(index)}
             >
@@ -147,7 +203,7 @@ const GalleryExpanded = () => {
       )}
 
       {/* Lightbox */}
-      {lightboxIndex !== null && (
+      {lightboxIndex !== null && fotosActuales[lightboxIndex] && (
         <div
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
           onClick={closeLightbox}
@@ -173,13 +229,13 @@ const GalleryExpanded = () => {
           {/* Image */}
           <div className="relative max-w-5xl max-h-[85vh] w-full" onClick={(e) => e.stopPropagation()}>
             <img
-              src={galleryPhotos[lightboxIndex].src}
-              alt={galleryPhotos[lightboxIndex].title}
+              src={fotosActuales[lightboxIndex].src}
+              alt={fotosActuales[lightboxIndex].title}
               className="w-full h-full max-h-[85vh] object-contain rounded-lg"
             />
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent rounded-b-lg">
-              <p className="font-mono-custom text-sm text-neon-soft/80">{galleryPhotos[lightboxIndex].year}</p>
-              <h3 className="font-display text-2xl text-white">{galleryPhotos[lightboxIndex].title}</h3>
+              <p className="font-mono-custom text-sm text-neon-soft/80">{fotosActuales[lightboxIndex].year}</p>
+              <h3 className="font-display text-2xl text-white">{fotosActuales[lightboxIndex].title}</h3>
             </div>
           </div>
 
@@ -194,7 +250,7 @@ const GalleryExpanded = () => {
 
           {/* Counter */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 font-mono-custom text-sm">
-            {lightboxIndex + 1} / {galleryPhotos.length}
+            {lightboxIndex + 1} / {fotosActuales.length}
           </div>
         </div>
       )}
