@@ -46,17 +46,18 @@ export const heroConfig: HeroConfig = {
   decodeChars: "01",
   subtitle: "De egresados • Colegio San Jose Obrero",
   ctaPrimary: "Ver Galería de Recuerdos",
-  ctaPrimaryTarget: "gallery",
+  ctaPrimaryTarget: "gallery-expanded",
   ctaSecondary: "Confirmar Asistencia",
   ctaSecondaryTarget: "contact",
   cornerLabel: "REUNIÓN DE ORO",
   cornerDetail: "1977 — 2027",
   navItems: [
     { label: "Inicio", sectionId: "inicio", icon: "disc" },
-    { label: "Memorias", sectionId: "albums", icon: "play" },
-    { label: "Galería", sectionId: "gallery", icon: "calendar" },
-    { label: "Eventos", sectionId: "tour", icon: "music" },
-    { label: "Contacto", sectionId: "contact", icon: "disc" },
+    { label: "Nuestra Historia", sectionId: "albums", icon: "play" },
+    { label: "Nuestros Compañeros", sectionId: "companeros", icon: "music" },
+    { label: "Galería de Recuerdos", sectionId: "gallery-expanded", icon: "calendar" },
+    { label: "Gran Reencuentro 2027", sectionId: "tour", icon: "disc" },
+    { label: "Contacto", sectionId: "contact", icon: "play" },
   ],
 };
 
@@ -189,7 +190,7 @@ export interface TourScheduleConfig {
 }
 
 export const tourScheduleConfig: TourScheduleConfig = {
-  sectionLabel: "CRONOGRAMA",
+  sectionLabel: "GRAN REENCUENTRO 2027",
   sectionTitle: "Programa de Celebración",
   vinylImage: "/cube-celebration.jpg",
   buyButtonText: "Confirmar",
@@ -366,7 +367,7 @@ export const footerConfig: FooterConfig = {
   brandName: "PROMO XVII",
   brandDescription: "Cincuenta años de amistad, recuerdos y legado. Una celebración del pasado que ilumina el presente.",
   quickLinksTitle: "Enlaces rápidos",
-  quickLinks: ["Inicio", "Galería", "Eventos", "Confirmar asistencia"],
+  quickLinks: ["Inicio", "Nuestra Historia", "Galería de Recuerdos", "Gran Reencuentro 2027", "Confirmar asistencia"],
   contactTitle: "Contacto",
   emailLabel: "Email",
   email: "promocionxvii.sjo.50@gmail.com",

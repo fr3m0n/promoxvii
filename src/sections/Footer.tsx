@@ -170,8 +170,9 @@ const Footer = () => {
                 {footerConfig.quickLinks.map((link) => {
                   const linkMap: Record<string, string> = {
                     Inicio: '#inicio',
-                    Galería: '#gallery',
-                    Eventos: '#tour',
+                    'Nuestra Historia': '#albums',
+                    'Galería de Recuerdos': '#gallery-expanded',
+                    'Gran Reencuentro 2027': '#tour',
                     'Confirmar asistencia': 'https://chat.whatsapp.com/D16jMP13sSx2myxeTEmiaW?s=cl&p=a&iam=2',
                   };
                   return (

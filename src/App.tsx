@@ -4,7 +4,8 @@ import useLenis from './hooks/useLenis';
 import { siteConfig } from './config';
 import Hero from './sections/Hero';
 import AlbumCube from './sections/AlbumCube';
-import ParallaxGallery from './sections/ParallaxGallery';
+// import ParallaxGallery from './sections/ParallaxGallery'; // Ocultada: repetía fotos de la galería completa
+import Companeros from './sections/Companeros';
 import GalleryExpanded from './sections/GalleryExpanded';
 import TourSchedule from './sections/TourSchedule';
 import Footer from './sections/Footer';
@@ -31,11 +32,14 @@ function App() {
       {/* Hero Section - Immersive landing */}
       <Hero />
 
-      {/* Album Cube Section - 3D showcase */}
+      {/* Album Cube Section - 3D showcase (Nuestra Historia) */}
       <AlbumCube />
 
-      {/* Parallax Gallery Section */}
-      <ParallaxGallery />
+      {/* Parallax Gallery Section - ocultada por repetir fotos */}
+      {/* <ParallaxGallery /> */}
+
+      {/* Nuestros Compañeros - directorio de la promoción */}
+      <Companeros />
 
       {/* Gallery Expanded Section */}
       <GalleryExpanded />

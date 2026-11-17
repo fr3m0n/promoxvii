@@ -160,6 +160,16 @@ const AlbumCube = () => {
         </Canvas>
       </div>
 
+      {/* Section label */}
+      <div className="absolute top-24 left-1/2 -translate-x-1/2 z-20 text-center px-4">
+        <p className="font-mono-custom text-xs text-neon-soft/60 uppercase tracking-wider mb-1">
+          NUESTRA HISTORIA
+        </p>
+        <h2 className="font-display text-2xl md:text-3xl text-white">
+          50 años en seis álbumes
+        </h2>
+      </div>
+
       {/* Album info overlay */}
       <div className="absolute bottom-12 left-12 z-20">
         <p className="font-mono-custom text-xs text-neon-soft/60 uppercase tracking-wider mb-2">

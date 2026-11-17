@@ -26,6 +26,21 @@ const Hero = () => {
   const [isDecoding, setIsDecoding] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Cuenta regresiva hasta el Gran Reencuentro (26 de agosto de 2027)
+  const EVENT_DATE = new Date(2027, 7, 26); // mes 7 = agosto (los meses van de 0 a 11)
+  const [daysLeft, setDaysLeft] = useState(() =>
+    Math.max(0, Math.ceil((EVENT_DATE.getTime() - Date.now()) / 86400000))
+  );
+
+  useEffect(() => {
+    const update = () =>
+      setDaysLeft(Math.max(0, Math.ceil((EVENT_DATE.getTime() - Date.now()) / 86400000)));
+    update();
+    const interval = setInterval(update, 60000); // actualiza cada minuto
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Decode text effect
   useEffect(() => {
     let iteration = 0;
@@ -187,6 +202,16 @@ const Hero = () => {
         >
           {heroConfig.subtitle}
         </p>
+
+        {/* Cuenta regresiva al Gran Reencuentro */}
+        <div className="nav-pill rounded-full px-5 py-2.5 mb-6 sm:mb-8 flex items-center gap-3">
+          <Calendar className="w-4 h-4 text-neon-cyan" />
+          <span className="font-mono-custom text-xs sm:text-sm uppercase tracking-wider text-white/80">
+            Faltan{' '}
+            <span className="text-neon-cyan font-bold">{daysLeft}</span>{' '}
+            {daysLeft === 1 ? 'día' : 'días'} — 26 de agosto de 2027
+          </span>
+        </div>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
