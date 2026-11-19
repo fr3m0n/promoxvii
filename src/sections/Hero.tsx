@@ -42,16 +42,16 @@ const Hero = () => {
   const secondsLeft = Math.floor((remaining % 60000) / 1000);
   const pad = (n: number) => String(n).padStart(2, '0');
 
-  // Decode text effect
+  // Decode text effect (rápido: ~1 segundo para que no parezca un fallo)
   useEffect(() => {
     let iteration = 0;
-    const maxIterations = TARGET_TEXT.length * 8;
+    const maxIterations = TARGET_TEXT.length * 4;
 
     const interval = setInterval(() => {
       setDisplayText(() => {
         return TARGET_TEXT.split('')
           .map((_, index) => {
-            if (index < iteration / 8) {
+            if (index < iteration / 4) {
               return TARGET_TEXT[index];
             }
             return CHARS[Math.floor(Math.random() * CHARS.length)];

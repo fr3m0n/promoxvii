@@ -90,7 +90,8 @@ const GalleryExpanded = () => {
           Nuestros Recuerdos
         </h2>
         <p className="font-mono-custom text-sm text-white/50 mt-4 max-w-2xl">
-          Elige una época para viajar en el tiempo. Haz clic en cualquier imagen para verla en grande.
+          Las fotos están agrupadas por épocas. Iremos añadiendo nuevos recuerdos a cada etapa;
+          haz clic en cualquier imagen para verla en grande.
         </p>
       </div>
 
