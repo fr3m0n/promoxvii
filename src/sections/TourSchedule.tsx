@@ -98,7 +98,7 @@ const TourSchedule = () => {
     },
     {
       q: '¿Dónde veo el programa completo de los tres días?',
-      a: 'Puedes descargar el programa oficial completo en PDF desde el botón "Ver Programa Completo (PDF)" que está justo debajo del programa.',
+      a: 'Puedes descargar el programa oficial completo en PDF desde el botón "Ver Programa Completo (PDF)" que está justo debajo de estas preguntas.',
     },
   ];
 
@@ -196,23 +196,6 @@ const TourSchedule = () => {
           </div>
         </div>
 
-        {/* Botón del PDF, justo debajo del programa */}
-        <div className="mt-10 text-center">
-          <p className="font-mono-custom text-sm text-[#1F1F1F]/60 mb-4">
-            {tourScheduleConfig.bottomNote}
-          </p>
-          <button
-            type="button"
-            onClick={() => {
-              window.open('/ProgramaBodasOro.pdf', '_blank');
-            }}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-[#1F1F1F] text-white font-display text-sm uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors cursor-pointer relative z-30"
-          >
-            <FileText className="w-5 h-5" />
-            <span>{tourScheduleConfig.bottomCtaText}</span>
-          </button>
-        </div>
-
         {/* Cómo llegar - Mapas */}
         <div className="mt-20">
           <div className="mb-8">
@@ -305,7 +288,22 @@ const TourSchedule = () => {
         {/* Formulario de inscripción */}
         <FormularioInscripcion />
 
-        {/* Bottom CTA */}
+        {/* Bottom CTA - Botón del PDF */}
+        <div className="mt-20 text-center">
+          <p className="font-mono-custom text-sm text-[#1F1F1F]/60 mb-4">
+            {tourScheduleConfig.bottomNote}
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              window.open('/ProgramaBodasOro.pdf', '_blank');
+            }}
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[#1F1F1F] text-white font-display text-sm uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors cursor-pointer relative z-30"
+          >
+            <FileText className="w-5 h-5" />
+            <span>{tourScheduleConfig.bottomCtaText}</span>
+          </button>
+        </div>
       </div>
 
       {/* Decorative elements */}
