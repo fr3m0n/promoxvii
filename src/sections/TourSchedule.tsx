@@ -98,7 +98,7 @@ const TourSchedule = () => {
     },
     {
       q: '¿Dónde veo el programa completo de los tres días?',
-      a: 'Puedes descargar el programa oficial completo en PDF desde el botón "Ver Programa Completo (PDF)" que está justo debajo de estas preguntas.',
+      a: 'Puedes descargar el programa oficial completo en PDF desde el botón "Ver Programa Completo (PDF)" que está justo debajo del título "Programa de Celebración".',
     },
   ];
 
@@ -111,13 +111,30 @@ const TourSchedule = () => {
       {/* Content container */}
       <div ref={contentRef} className="relative z-20 max-w-7xl mx-auto px-6 md:px-12">
         {/* Section header */}
-        <div className="mb-16">
+        <div className="mb-8">
           <p className="font-mono-custom text-xs text-[#1F1F1F]/60 uppercase tracking-wider mb-2">
             {tourScheduleConfig.sectionLabel}
           </p>
           <h2 className="font-display text-5xl md:text-7xl text-[#1F1F1F]">
             {tourScheduleConfig.sectionTitle}
           </h2>
+        </div>
+
+        {/* PDF del programa, justo debajo del título */}
+        <div className="mb-12 text-center">
+          <p className="font-mono-custom text-sm text-[#1F1F1F]/60 mb-4">
+            {tourScheduleConfig.bottomNote}
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              window.open('/ProgramaBodasOro.pdf', '_blank');
+            }}
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[#1F1F1F] text-white font-display text-sm uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors cursor-pointer relative z-30"
+          >
+            <FileText className="w-5 h-5" />
+            <span>{tourScheduleConfig.bottomCtaText}</span>
+          </button>
         </div>
 
         {/* Two-column layout */}
@@ -210,6 +227,12 @@ const TourSchedule = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Hotel Bracamonte */}
             <div className="rounded-2xl overflow-hidden bg-white/50 backdrop-blur-sm border border-[#1F1F1F]/10">
+              <img
+                src="/hotel-bracamonte.jpg"
+                alt="Hotel Bracamonte, Trujillo"
+                loading="lazy"
+                className="w-full h-40 md:h-48 object-cover"
+              />
               <iframe
                 src="https://maps.google.com/maps?q=-8.0846598,-79.1212522&z=16&output=embed"
                 title="Mapa: Hotel Bracamonte"
@@ -287,23 +310,6 @@ const TourSchedule = () => {
 
         {/* Formulario de inscripción */}
         <FormularioInscripcion />
-
-        {/* Bottom CTA - Botón del PDF */}
-        <div className="mt-20 text-center">
-          <p className="font-mono-custom text-sm text-[#1F1F1F]/60 mb-4">
-            {tourScheduleConfig.bottomNote}
-          </p>
-          <button
-            type="button"
-            onClick={() => {
-              window.open('/ProgramaBodasOro.pdf', '_blank');
-            }}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-[#1F1F1F] text-white font-display text-sm uppercase tracking-wider rounded-full hover:bg-[#1F1F1F]/80 transition-colors cursor-pointer relative z-30"
-          >
-            <FileText className="w-5 h-5" />
-            <span>{tourScheduleConfig.bottomCtaText}</span>
-          </button>
-        </div>
       </div>
 
       {/* Decorative elements */}
