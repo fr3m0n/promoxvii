@@ -125,7 +125,7 @@ const TourSchedule = () => {
           {/* Left: Venue preview centered */}
           {TOUR_DATES.length > 0 && (
             <div className="hidden lg:flex lg:justify-center lg:items-center">
-              <div className="w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden bg-[#1F1F1F]/10 mx-auto">
+              <div className="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden bg-[#1F1F1F]/10 mx-auto">
                 <img
                   src={TOUR_DATES[activeVenue]?.image}
                   alt={TOUR_DATES[activeVenue]?.venue}
