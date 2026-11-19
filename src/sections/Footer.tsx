@@ -70,7 +70,7 @@ const Footer = () => {
         {/* Background portrait */}
         <div
           ref={portraitRef}
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0 flex items-center justify-center pt-48 sm:pt-0"
         >
           <div className="relative w-full max-w-xs sm:max-w-md md:max-w-2xl aspect-[2/3] mx-auto">
             <img
@@ -84,13 +84,13 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Artist name - movido arriba a la izquierda */}
-        <div className="absolute top-20 left-12 z-20">
+        {/* Artist name - arriba a la izquierda, tamaño adaptado al móvil */}
+        <div className="absolute top-20 left-6 sm:left-12 z-20 pr-4">
           <p className="font-mono-custom text-xs text-white/40 uppercase tracking-wider mb-2">
             {footerConfig.artistLabel}
           </p>
-          <h3 className="font-display text-4xl text-white">{footerConfig.artistName}</h3>
-          <p className="font-mono-custom text-sm text-neon-soft/60">{footerConfig.artistSubtitle}</p>
+          <h3 className="font-display text-2xl sm:text-4xl text-white">{footerConfig.artistName}</h3>
+          <p className="font-mono-custom text-xs sm:text-sm text-neon-soft/60">{footerConfig.artistSubtitle}</p>
         </div>
       </div>
 
