@@ -49,7 +49,7 @@ export const heroConfig: HeroConfig = {
   ctaPrimaryTarget: "gallery-expanded",
   ctaSecondary: "Confirmar Asistencia",
   ctaSecondaryTarget: "contact",
-  cornerLabel: "REUNIÓN DE ORO",
+  cornerLabel: "Bodas de Oro",
   cornerDetail: "1977 — 2027",
   navItems: [
     { label: "Inicio", sectionId: "inicio", icon: "disc" },
