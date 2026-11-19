@@ -119,7 +119,7 @@ const Hero = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 video-overlay" />
         {/* Animated gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-void-black/30 to-void-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-void-black/15 to-void-black" />
       </div>
 
       {/* (sin velo: la foto es intencional y las caras quedan perfectas) */}
