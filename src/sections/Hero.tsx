@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { Play, Music, Disc, Calendar, Users } from 'lucide-react';
 import { heroConfig, confirmados } from '../config';
@@ -18,12 +18,7 @@ const Hero = () => {
 
   const heroRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const TARGET_TEXT = heroConfig.decodeText;
-  const CHARS = heroConfig.decodeChars || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
-  const [displayText, setDisplayText] = useState(' '.repeat(TARGET_TEXT.length));
-  const [isDecoding, setIsDecoding] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Cuenta regresiva en vivo hasta el Gran Reencuentro (26 de agosto de 2027)
@@ -42,35 +37,6 @@ const Hero = () => {
   const secondsLeft = Math.floor((remaining % 60000) / 1000);
   const pad = (n: number) => String(n).padStart(2, '0');
 
-  // Decode text effect (rápido: ~1 segundo para que no parezca un fallo)
-  useEffect(() => {
-    let iteration = 0;
-    const maxIterations = TARGET_TEXT.length * 4;
-
-    const interval = setInterval(() => {
-      setDisplayText(() => {
-        return TARGET_TEXT.split('')
-          .map((_, index) => {
-            if (index < iteration / 4) {
-              return TARGET_TEXT[index];
-            }
-            return CHARS[Math.floor(Math.random() * CHARS.length)];
-          })
-          .join('');
-      });
-
-      iteration += 1;
-
-      if (iteration >= maxIterations) {
-        clearInterval(interval);
-        setDisplayText(TARGET_TEXT);
-        setIsDecoding(false);
-      }
-    }, 40);
-
-    return () => clearInterval(interval);
-  }, []);
-
   // GSAP animations
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -81,12 +47,14 @@ const Hero = () => {
         { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.3 }
       );
 
-      // Subtitle fade in
-      gsap.fromTo(
-        subtitleRef.current,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 1.5 }
-      );
+      // Subtitle fade in (el elemento se quita en el hero comprimido)
+      if (subtitleRef.current) {
+        gsap.fromTo(
+          subtitleRef.current,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 1.5 }
+        );
+      }
     }, heroRef);
 
     return () => ctx.revert();
@@ -169,7 +137,7 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Hero: contenido centrado en el hueco vacío, por encima de las cabezas del grupo */}
+      {/* Hero: contenido centrado en el hueco vacÃ­o, por encima de las cabezas del grupo */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 pb-[16vh] sm:pb-[20vh]">
         {/* Logo / Brand y Menu - misma linea */}
         <div className="absolute top-4 left-4 right-4 sm:top-8 sm:left-8 sm:right-8 flex items-center justify-between z-50">
@@ -184,7 +152,7 @@ const Hero = () => {
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="sm:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 nav-pill rounded-full"
-            aria-label="Abrir menú"
+            aria-label="Abrir menÃº"
           >
             <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
             <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
@@ -192,70 +160,41 @@ const Hero = () => {
           </button>
         </div>
 
-        {/* Main title with decode effect */}
-        <h1
-          ref={titleRef}
-          className="decode-text text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold text-white leading-none tracking-[0.02em] mb-4 sm:mb-6"
-        >
-          <span className={`${isDecoding ? 'text-glow-cyan' : ''} transition-all duration-300`} style={textShadowStyle}>
-            {displayText}
-          </span>
-        </h1>
-
-        {/* Subtitle */}
-        <p
-          ref={subtitleRef}
-          style={textShadowStyle}
-          className="font-mono-custom text-xs sm:text-base md:text-lg text-neon-soft/80 uppercase tracking-[0.15em] sm:tracking-[0.3em] mb-6 sm:mb-8 px-4 text-center"
-        >
-          {heroConfig.subtitle}
-        </p>
-
-        {/* Cuenta regresiva en vivo al Gran Reencuentro */}
-        <div className="nav-pill rounded-full px-4 sm:px-5 py-2.5 mb-6 sm:mb-8 flex items-center gap-2 sm:gap-3">
-          <Calendar className="w-4 h-4 text-neon-cyan flex-shrink-0" />
-          <span className="font-mono-custom text-[10px] sm:text-sm uppercase tracking-wider text-white/85 whitespace-nowrap" style={textShadowStyle}>
-            Faltan{' '}
-          <span className="text-neon-cyan font-bold" style={textShadowStyle}>
-            {daysLeft}
-          </span>{' '}
-            {daysLeft === 1 ? 'día' : 'días'}{' '}
-            <span className="text-neon-cyan font-bold tabular-nums">
-              {pad(hoursLeft)}:{pad(minutesLeft)}:{pad(secondsLeft)}
+        {/* Contenido: contador por encima de las cabezas + confirmaciÃ³n */}
+        <div className="absolute left-1/2 top-[32vh] -translate-x-1/2 z-20 flex flex-col items-center gap-3 px-4 text-center">
+          {/* Cuenta regresiva */}
+          <div className="nav-pill rounded-full px-4 sm:px-5 py-2.5 flex items-center gap-2 sm:gap-3">
+            <Calendar className="w-4 h-4 text-neon-cyan flex-shrink-0" />
+            <span className="font-mono-custom text-[10px] sm:text-sm uppercase tracking-wider text-white/85 whitespace-nowrap" style={textShadowStyle}>
+              Faltan{' '}
+              <span className="text-neon-cyan font-bold" style={textShadowStyle}>{daysLeft}</span>{' '}
+              {daysLeft === 1 ? 'dÃ­a' : 'dÃ­as'}{' '}
+              <span className="text-neon-cyan font-bold tabular-nums">{pad(hoursLeft)}:{pad(minutesLeft)}:{pad(secondsLeft)}</span>
+              <span className="hidden sm:inline"> â€” 26 de agosto de 2027</span>
             </span>
-            <span className="hidden sm:inline"> — 26 de agosto de 2027</span>
-          </span>
-        </div>
+          </div>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-          <button
-            onClick={() => scrollToSection(heroConfig.ctaPrimaryTarget)}
-            style={textShadowStyle}
-            className="px-6 sm:px-8 py-3 bg-white text-void-black font-display text-sm uppercase tracking-wider rounded-full hover:bg-neon-soft transition-colors duration-300 w-full sm:w-auto"
-          >
-            {heroConfig.ctaPrimary}
-          </button>
+          {/* BotÃ³n Confirmar Asistencia */}
           <button
             onClick={() => window.open('https://chat.whatsapp.com/D16jMP13sSx2myxeTEmiaW?s=cl&p=a&iam=2', '_blank')}
             style={textShadowStyle}
-            className="px-6 sm:px-8 py-3 border border-white/30 text-white font-display text-sm uppercase tracking-wider rounded-full hover:border-neon-cyan hover:text-neon-cyan transition-colors duration-300 w-full sm:w-auto"
+            className="px-6 sm:px-8 py-3 border border-white/30 text-white font-display text-sm uppercase tracking-wider rounded-full hover:border-neon-cyan hover:text-neon-cyan transition-colors duration-300"
           >
             {heroConfig.ctaSecondary}
           </button>
-        </div>
 
-        {/* Confirmados (visible cuando hay más de 0) */}
-        {confirmados > 0 && (
-          <div className="mt-5 flex items-center justify-center gap-2">
-            <Users className="w-4 h-4 text-neon-cyan" />
-            <span className="font-mono-custom text-xs sm:text-sm uppercase tracking-wider text-white/70">
-              Ya somos{' '}
-              <span className="text-neon-cyan font-bold" style={textShadowStyle}>{confirmados}</span>{' '}
-              confirmados
-            </span>
-          </div>
-        )}
+          {/* Confirmados (visible cuando hay mÃ¡s de 0) */}
+          {confirmados > 0 && (
+            <div className="flex items-center justify-center gap-2">
+              <Users className="w-4 h-4 text-neon-cyan" />
+              <span className="font-mono-custom text-xs sm:text-sm uppercase tracking-wider text-white/70">
+                Ya somos{' '}
+                <span className="text-neon-cyan font-bold" style={textShadowStyle}>{confirmados}</span>{' '}
+                confirmados
+              </span>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Decorative elements */}
