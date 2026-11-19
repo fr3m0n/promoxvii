@@ -99,6 +99,11 @@ const Hero = () => {
     }
   };
 
+  // Sombra que hace que el texto se lea sobre cualquier foto
+  const textShadowStyle: React.CSSProperties = {
+    textShadow: '0 1px 3px rgba(0,0,0,0.6), 0 0 8px rgba(0,0,0,0.3)',
+  };
+
   return (
     <section
       id="inicio"
@@ -116,6 +121,15 @@ const Hero = () => {
         {/* Animated gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-void-black/30 to-void-black" />
       </div>
+
+      {/* Velo oscuro suave: solo en la zona donde hay texto (las caras de la foto quedan intactas) */}
+      <div
+        className="absolute inset-0 z-[2] pointer-events-none"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.65) 90%, rgba(0,0,0,0) 100%)',
+          filter: 'blur(1px)',
+        }}
+      />
 
       {/* Navigation pill - solo desktop */}
       <nav
@@ -191,7 +205,7 @@ const Hero = () => {
           ref={titleRef}
           className="decode-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-none tracking-tighter mb-4 sm:mb-6"
         >
-          <span className={`${isDecoding ? 'text-glow-cyan' : ''} transition-all duration-300`}>
+          <span className={`${isDecoding ? 'text-glow-cyan' : ''} transition-all duration-300`} style={textShadowStyle}>
             {displayText}
           </span>
         </h1>
@@ -199,6 +213,7 @@ const Hero = () => {
         {/* Subtitle */}
         <p
           ref={subtitleRef}
+          style={textShadowStyle}
           className="font-mono-custom text-xs sm:text-sm md:text-base text-neon-soft/70 uppercase tracking-[0.15em] sm:tracking-[0.3em] mb-6 sm:mb-8 px-4 text-center"
         >
           {heroConfig.subtitle}
@@ -209,7 +224,9 @@ const Hero = () => {
           <Calendar className="w-4 h-4 text-neon-cyan flex-shrink-0" />
           <span className="font-mono-custom text-[10px] sm:text-sm uppercase tracking-wider text-white/80 whitespace-nowrap">
             Faltan{' '}
-            <span className="text-neon-cyan font-bold">{daysLeft}</span>{' '}
+          <span className="text-neon-cyan font-bold" style={textShadowStyle}>
+            {daysLeft}
+          </span>{' '}
             {daysLeft === 1 ? 'día' : 'días'}{' '}
             <span className="text-neon-cyan font-bold tabular-nums">
               {pad(hoursLeft)}:{pad(minutesLeft)}:{pad(secondsLeft)}
@@ -222,12 +239,14 @@ const Hero = () => {
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
           <button
             onClick={() => scrollToSection(heroConfig.ctaPrimaryTarget)}
+            style={textShadowStyle}
             className="px-6 sm:px-8 py-3 bg-white text-void-black font-display text-sm uppercase tracking-wider rounded-full hover:bg-neon-soft transition-colors duration-300 w-full sm:w-auto"
           >
             {heroConfig.ctaPrimary}
           </button>
           <button
             onClick={() => window.open('https://chat.whatsapp.com/D16jMP13sSx2myxeTEmiaW?s=cl&p=a&iam=2', '_blank')}
+            style={textShadowStyle}
             className="px-6 sm:px-8 py-3 border border-white/30 text-white font-display text-sm uppercase tracking-wider rounded-full hover:border-neon-cyan hover:text-neon-cyan transition-colors duration-300 w-full sm:w-auto"
           >
             {heroConfig.ctaSecondary}
@@ -240,7 +259,7 @@ const Hero = () => {
             <Users className="w-4 h-4 text-neon-cyan" />
             <span className="font-mono-custom text-xs sm:text-sm uppercase tracking-wider text-white/70">
               Ya somos{' '}
-              <span className="text-neon-cyan font-bold">{confirmados}</span>{' '}
+              <span className="text-neon-cyan font-bold" style={textShadowStyle}>{confirmados}</span>{' '}
               confirmados
             </span>
           </div>
