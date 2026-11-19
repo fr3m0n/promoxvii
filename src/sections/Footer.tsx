@@ -257,7 +257,6 @@ const Footer = () => {
                 <audio
                   key={radioStation}
                   controls
-                  autoPlay
                   className="w-full"
                   style={{ height: '32px' }}
                 >
