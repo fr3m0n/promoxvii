@@ -15,7 +15,6 @@ const TourSchedule = () => {
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [activeVenue, setActiveVenue] = useState<number>(0);
   const [isVisible, setIsVisible] = useState(false);
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
 
@@ -122,23 +121,23 @@ const TourSchedule = () => {
 
         {/* Two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left: Venue preview centered */}
+          {/* Left: Vista del Hotel Bracamonte (siempre la misma foto) */}
           {TOUR_DATES.length > 0 && (
             <div className="hidden lg:flex lg:justify-center lg:items-center">
               <div className="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden bg-[#1F1F1F]/10 mx-auto">
                 <img
-                  src={TOUR_DATES[activeVenue]?.image}
-                  alt={TOUR_DATES[activeVenue]?.venue}
-                  className="w-full h-full object-cover transition-opacity duration-500"
+                  src="/hotel-bracamonte.jpg"
+                  alt="Hotel Bracamonte - Trujillo"
+                  className="w-full h-full object-cover"
                 />
 
                 {/* Venue info overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[#1F1F1F] to-transparent">
                   <p className="font-display text-2xl text-white">
-                    {TOUR_DATES[activeVenue]?.venue}
+                    {TOUR_DATES[0]?.venue}
                   </p>
                   <p className="font-mono-custom text-sm text-white/70">
-                    {TOUR_DATES[activeVenue]?.city}
+                    {TOUR_DATES[0]?.city}
                   </p>
                 </div>
               </div>
@@ -147,15 +146,13 @@ const TourSchedule = () => {
 
           {/* Right: Tour list */}
           <div className="space-y-4">
-            {TOUR_DATES.slice(0, 6).map((tour, index) => {
+            {TOUR_DATES.slice(0, 6).map((tour) => {
               const status = getStatusLabel(tour.status);
 
               return (
                 <div
                   key={tour.id}
                   className="tour-item group relative p-6 rounded-xl bg-white/50 backdrop-blur-sm border border-[#1F1F1F]/10 hover:bg-white/80 transition-all duration-300 cursor-pointer"
-                  onMouseEnter={() => setActiveVenue(index)}
-                  onMouseLeave={() => setActiveVenue(0)}
                 >
                   <div className="flex flex-col md:flex-row md:items-center gap-4 min-w-0">
                     {/* Date */}
