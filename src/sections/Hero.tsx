@@ -12,7 +12,7 @@ const ICON_MAP = {
 
 const Hero = () => {
   // Null check: if config is empty, do not render
-  if (!heroConfig.decodeText && !heroConfig.brandName && heroConfig.navItems.length === 0) {
+  if (!heroConfig.brandName && heroConfig.navItems.length === 0) {
     return null;
   }
 
@@ -90,7 +90,6 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-void-black/15 to-void-black" />
       </div>
 
-      {/* (sin velo: la foto es intencional y las caras quedan perfectas) */}
       {/* Navigation pill - solo desktop */}
       <nav
         ref={navRef}
@@ -137,7 +136,7 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Hero: contenido centrado en el hueco vacÃ­o, por encima de las cabezas del grupo */}
+      {/* Hero: contenido centrado en el hueco vacío, por encima de las cabezas del grupo */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 pb-[16vh] sm:pb-[20vh]">
         {/* Logo / Brand y Menu - misma linea */}
         <div className="absolute top-4 left-4 right-4 sm:top-8 sm:left-8 sm:right-8 flex items-center justify-between z-50">
@@ -147,12 +146,12 @@ const Hero = () => {
             </div>
             <span className="font-display text-sm sm:text-lg text-white">{heroConfig.brandName}</span>
           </div>
-          
+
           {/* Hamburger menu - solo mobil */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="sm:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 nav-pill rounded-full"
-            aria-label="Abrir menÃº"
+            aria-label="Abrir menú"
           >
             <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
             <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
@@ -160,21 +159,21 @@ const Hero = () => {
           </button>
         </div>
 
-        {/* Contenido: contador por encima de las cabezas + confirmaciÃ³n */}
-        <div className="absolute left-1/2 top-[32vh] -translate-x-1/2 z-20 flex flex-col items-center gap-3 px-4 text-center">
+        {/* Contenido: contador por encima de las cabezas + confirmación */}
+        <div className="absolute left-1/2 top-[12vh] -translate-x-1/2 z-20 flex flex-col items-center gap-3 px-4 text-center">
           {/* Cuenta regresiva */}
           <div className="nav-pill rounded-full px-4 sm:px-5 py-2.5 flex items-center gap-2 sm:gap-3">
             <Calendar className="w-4 h-4 text-neon-cyan flex-shrink-0" />
             <span className="font-mono-custom text-[10px] sm:text-sm uppercase tracking-wider text-white/85 whitespace-nowrap" style={textShadowStyle}>
               Faltan{' '}
               <span className="text-neon-cyan font-bold" style={textShadowStyle}>{daysLeft}</span>{' '}
-              {daysLeft === 1 ? 'dÃ­a' : 'dÃ­as'}{' '}
+              {daysLeft === 1 ? 'día' : 'días'}{' '}
               <span className="text-neon-cyan font-bold tabular-nums">{pad(hoursLeft)}:{pad(minutesLeft)}:{pad(secondsLeft)}</span>
-              <span className="hidden sm:inline"> â€” 26 de agosto de 2027</span>
+              <span className="hidden sm:inline"> — 26 de agosto de 2027</span>
             </span>
           </div>
 
-          {/* BotÃ³n Confirmar Asistencia */}
+          {/* Botón Confirmar Asistencia */}
           <button
             onClick={() => window.open('https://chat.whatsapp.com/D16jMP13sSx2myxeTEmiaW?s=cl&p=a&iam=2', '_blank')}
             style={textShadowStyle}
@@ -183,7 +182,7 @@ const Hero = () => {
             {heroConfig.ctaSecondary}
           </button>
 
-          {/* Confirmados (visible cuando hay mÃ¡s de 0) */}
+          {/* Confirmados (visible cuando hay más de 0) */}
           {confirmados > 0 && (
             <div className="flex items-center justify-center gap-2">
               <Users className="w-4 h-4 text-neon-cyan" />
