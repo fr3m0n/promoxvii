@@ -216,7 +216,7 @@ export const tourScheduleConfig: TourScheduleConfig = {
       city: "Recepción e Instalación",
       venue: "Hotel Bracamonte - Trujillo",
       status: "on-sale",
-      image: "/gallery-friends.jpg",
+      image: "/hotel-bracamonte.jpg",
     },
     {
       id: 2,
