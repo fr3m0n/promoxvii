@@ -99,9 +99,9 @@ const Hero = () => {
     }
   };
 
-  // Sombra que hace que el texto se lea sobre cualquier foto
+  // Sombra que hace que el texto se lea sobre cualquier foto (resuelta: ya no se ve demasiado oscura)
   const textShadowStyle: React.CSSProperties = {
-    textShadow: '0 1px 3px rgba(0,0,0,0.6), 0 0 8px rgba(0,0,0,0.3)',
+    textShadow: '0 1px 2px rgba(0,0,0,0.45)',
   };
 
   return (
@@ -122,11 +122,11 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-void-black/30 to-void-black" />
       </div>
 
-      {/* Velo oscuro suave: solo en la zona donde hay texto (las caras de la foto quedan intactas) */}
+      {/* Velo oscuro suave: solo en la zona donde hay texto (finally!) */}
       <div
         className="absolute inset-0 z-[2] pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.65) 90%, rgba(0,0,0,0) 100%)',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.12) 40%, rgba(0,0,0,0.25) 85%, rgba(0,0,0,0) 100%)',
           filter: 'blur(1px)',
         }}
       />
