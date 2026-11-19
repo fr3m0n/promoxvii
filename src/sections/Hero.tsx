@@ -113,7 +113,7 @@ const Hero = () => {
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <div
-          className="absolute inset-0 bg-cover bg-top"
+          className="absolute inset-0 bg-cover bg-bottom"
           style={{ backgroundImage: `url(${heroConfig.backgroundImage})` }}
         />
         {/* Dark overlay */}
