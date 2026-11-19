@@ -99,9 +99,9 @@ const Hero = () => {
     }
   };
 
-  // Sombra que hace que el texto se lea sobre cualquier foto (resuelta: ya no se ve demasiado oscura)
+  // Sombra que hace que el texto se lea bien sobre cualquier foto (sin tapar la foto)
   const textShadowStyle: React.CSSProperties = {
-    textShadow: '0 1px 2px rgba(0,0,0,0.45)',
+    textShadow: '0 1px 4px rgba(0,0,0,0.75), 0 0 10px rgba(0,0,0,0.4)',
   };
 
   return (
@@ -122,15 +122,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-void-black/30 to-void-black" />
       </div>
 
-      {/* Velo oscuro suave: solo en la zona donde hay texto (finally!) */}
-      <div
-        className="absolute inset-0 z-[2] pointer-events-none"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.12) 40%, rgba(0,0,0,0.25) 85%, rgba(0,0,0,0) 100%)',
-          filter: 'blur(1px)',
-        }}
-      />
-
+      {/* (sin velo: la foto es intencional y las caras quedan perfectas) */}
       {/* Navigation pill - solo desktop */}
       <nav
         ref={navRef}
@@ -178,7 +170,7 @@ const Hero = () => {
       )}
 
       {/* Hero: contenido centrado en el hueco vacío, por encima de las cabezas del grupo */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 pb-[14vh] sm:pb-[16vh]">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 pb-[16vh] sm:pb-[20vh]">
         {/* Logo / Brand y Menu - misma linea */}
         <div className="absolute top-4 left-4 right-4 sm:top-8 sm:left-8 sm:right-8 flex items-center justify-between z-50">
           <div className="flex items-center gap-2">
@@ -203,7 +195,7 @@ const Hero = () => {
         {/* Main title with decode effect */}
         <h1
           ref={titleRef}
-          className="decode-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-none tracking-tighter mb-4 sm:mb-6"
+          className="decode-text text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold text-white leading-none tracking-[0.02em] mb-4 sm:mb-6"
         >
           <span className={`${isDecoding ? 'text-glow-cyan' : ''} transition-all duration-300`} style={textShadowStyle}>
             {displayText}
@@ -214,7 +206,7 @@ const Hero = () => {
         <p
           ref={subtitleRef}
           style={textShadowStyle}
-          className="font-mono-custom text-xs sm:text-sm md:text-base text-neon-soft/70 uppercase tracking-[0.15em] sm:tracking-[0.3em] mb-6 sm:mb-8 px-4 text-center"
+          className="font-mono-custom text-xs sm:text-base md:text-lg text-neon-soft/80 uppercase tracking-[0.15em] sm:tracking-[0.3em] mb-6 sm:mb-8 px-4 text-center"
         >
           {heroConfig.subtitle}
         </p>
@@ -222,7 +214,7 @@ const Hero = () => {
         {/* Cuenta regresiva en vivo al Gran Reencuentro */}
         <div className="nav-pill rounded-full px-4 sm:px-5 py-2.5 mb-6 sm:mb-8 flex items-center gap-2 sm:gap-3">
           <Calendar className="w-4 h-4 text-neon-cyan flex-shrink-0" />
-          <span className="font-mono-custom text-[10px] sm:text-sm uppercase tracking-wider text-white/80 whitespace-nowrap">
+          <span className="font-mono-custom text-[10px] sm:text-sm uppercase tracking-wider text-white/85 whitespace-nowrap" style={textShadowStyle}>
             Faltan{' '}
           <span className="text-neon-cyan font-bold" style={textShadowStyle}>
             {daysLeft}
